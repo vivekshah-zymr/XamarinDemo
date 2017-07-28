@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{5D2601CD-41FC-4712-B573-F70C3DE4B054}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DemoApp.iOS</RootNamespace>
+    <AssemblyName>DemoApp.iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>60748</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>13333</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net">
+      <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
+      <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\Xamarin.iOS10\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DemoApp\DemoApp.csproj">
+      <Project>{27612CCB-465F-4070-AAA7-888B482C101B}</Project>
+      <Name>DemoApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconBack.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconBack.imageset\ic_back.png" />
+    <ImageAsset Include="Assets.xcassets\iconBack.imageset\ic_back%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconBack.imageset\ic_back%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconSearch.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconSearch.imageset\ic_search.png" />
+    <ImageAsset Include="Assets.xcassets\iconSearch.imageset\ic_search%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconSearch.imageset\ic_search%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconEmail.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconEmail.imageset\ic_email_deactive.png" />
+    <ImageAsset Include="Assets.xcassets\iconEmail.imageset\ic_email_deactive%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconEmail.imageset\ic_email_deactive%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconLike.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconLike.imageset\ic_Liked%401x.png" />
+    <ImageAsset Include="Assets.xcassets\iconLike.imageset\ic_Liked%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconLike.imageset\ic_Liked%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconPassword.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconPassword.imageset\ic_pass_deactive.png" />
+    <ImageAsset Include="Assets.xcassets\iconPassword.imageset\ic_pass_deactive%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconPassword.imageset\ic_pass_deactive%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconPerson.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconPerson.imageset\ic_person_field.png" />
+    <ImageAsset Include="Assets.xcassets\iconPerson.imageset\ic_person_field%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconPerson.imageset\ic_person_field%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconShare.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconShare.imageset\ic_shared%401x.png" />
+    <ImageAsset Include="Assets.xcassets\iconShare.imageset\ic_shared%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconShare.imageset\ic_shared%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconWatchlist.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconWatchlist.imageset\bookmark_white.png" />
+    <ImageAsset Include="Assets.xcassets\iconWatchlist.imageset\bookmark_white%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconWatchlist.imageset\bookmark_white%403x.png" />
+    <ImageAsset Include="Assets.xcassets\orOption.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\orOption.imageset\ic_or_btn_bg.png" />
+    <ImageAsset Include="Assets.xcassets\orOption.imageset\ic_or_btn_bg%402x.png" />
+    <ImageAsset Include="Assets.xcassets\orOption.imageset\ic_or_btn_bg%403x.png" />
+    <ImageAsset Include="Assets.xcassets\radioDeselect.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\radioSelect.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\radioSelect.imageset\ic_redio1.png" />
+    <ImageAsset Include="Assets.xcassets\radioSelect.imageset\ic_redio1%402x.png" />
+    <ImageAsset Include="Assets.xcassets\radioSelect.imageset\ic_redio1%403x.png" />
+    <ImageAsset Include="Assets.xcassets\radioDeselect.imageset\ic_redio2.png" />
+    <ImageAsset Include="Assets.xcassets\radioDeselect.imageset\ic_redio2%402x.png" />
+    <ImageAsset Include="Assets.xcassets\radioDeselect.imageset\ic_redio2%403x.png" />
+    <ImageAsset Include="Assets.xcassets\bgNews.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\bgNews.imageset\ic_image_bg.png" />
+    <ImageAsset Include="Assets.xcassets\bgNews.imageset\ic_image_bg%402x.png" />
+    <ImageAsset Include="Assets.xcassets\bgNews.imageset\ic_image_bg%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconAdd.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconAdd.imageset\Add to list.png" />
+    <ImageAsset Include="Assets.xcassets\iconAdd.imageset\Add to list%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconAdd.imageset\Add to list%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Assets.xcassets\iconBack.imageset\" />
+    <Folder Include="Assets.xcassets\iconSearch.imageset\" />
+    <Folder Include="Resources\fonts\" />
+    <Folder Include="Assets.xcassets\iconEmail.imageset\" />
+    <Folder Include="Assets.xcassets\iconHome.imageset\" />
+    <Folder Include="Assets.xcassets\iconLike.imageset\" />
+    <Folder Include="Assets.xcassets\iconMovie.imageset\" />
+    <Folder Include="Assets.xcassets\iconMusic.imageset\" />
+    <Folder Include="Assets.xcassets\iconNews.imageset\" />
+    <Folder Include="Assets.xcassets\iconPassword.imageset\" />
+    <Folder Include="Assets.xcassets\iconPerson.imageset\" />
+    <Folder Include="Assets.xcassets\iconShare.imageset\" />
+    <Folder Include="Assets.xcassets\iconWatchlist.imageset\" />
+    <Folder Include="Assets.xcassets\orOption.imageset\" />
+    <Folder Include="Assets.xcassets\radioDeselect.imageset\" />
+    <Folder Include="Assets.xcassets\radioSelect.imageset\" />
+    <Folder Include="Assets.xcassets\bgNews.imageset\" />
+    <Folder Include="Assets.xcassets\iconAdd.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="SQLite_iOS.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\fonts\FjallaOne-Regular.ttf" />
+    <BundleResource Include="Resources\fonts\Roboto-Italic.ttf" />
+    <BundleResource Include="Resources\fonts\Roboto-Medium.ttf" />
+    <BundleResource Include="Resources\fonts\Roboto-Regular.ttf" />
+    <BundleResource Include="Resources\fonts\Lobster-Regular.ttf" />
+    <BundleResource Include="Resources\iconMovie%402x.png" />
+    <BundleResource Include="Resources\iconMovie%403x.png" />
+    <BundleResource Include="Resources\iconHome.png" />
+    <BundleResource Include="Resources\iconHome%402x.png" />
+    <BundleResource Include="Resources\iconHome%403x.png" />
+    <BundleResource Include="Resources\iconMovie.png" />
+    <BundleResource Include="Resources\iconMusic.png" />
+    <BundleResource Include="Resources\iconMusic%402x.png" />
+    <BundleResource Include="Resources\iconMusic%403x.png" />
+    <BundleResource Include="Resources\iconNews.png" />
+    <BundleResource Include="Resources\iconNews%402x.png" />
+    <BundleResource Include="Resources\iconNews%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+</Project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.PersonListPage" NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="44" Orientation="Horizontal" Padding="0,20,0,0">
+                <Button Clicked="didTapBack" Image="iconBack" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
+                <Label Text="Person List" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
+                <Button Clicked="didTapAdd" Image="iconAdd" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
+            </StackLayout>
+            <Image BackgroundColor="#C1C1C1" HeightRequest="1" Margin="0" />
+            <ListView x:Name="personListView" ItemTapped="OnContactTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="Start" FontAttributes="Bold"/>
+                                <Label Text="{Binding PhoneNumber}" VerticalTextAlignment="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

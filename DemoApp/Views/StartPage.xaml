@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.StartPage" NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15" BackgroundColor="#F5F5F6">
+            <Label Text="Welcome" HorizontalTextAlignment="Center" FontSize="35" Margin="0,50,0,0">
+            </Label>
+            <Label Text="to MyApp!" HorizontalTextAlignment="Center" FontSize="25" TextColor="#C1C1C1">
+            </Label>
+            <Label Text="You are not logged in" HorizontalTextAlignment="Center" FontSize="20">
+            </Label>
+            <Label Text="Sign in to make things a little more personal :)" HorizontalTextAlignment="Center" FontSize="15" TextColor="#C1C1C1">
+            </Label>
+            <!--<StackLayout Orientation="Horizontal" Spacing="50" HorizontalOptions="CenterAndExpand">
+                <Button Text="SIGN IN" Clicked="didTapLogin" HeightRequest="45" BackgroundColor="#7C56EE" TextColor="White">
+                </Button>
+                <Button Text="CREATE AN ACCOUNT" Clicked="didTapSignup" HeightRequest="45" BackgroundColor="White" TextColor="#7C56EE" BorderColor="#7C56EE" BorderWidth="2">
+                </Button>
+            </StackLayout>-->
+            <Grid>
+                <Button Text="SIGN IN" Clicked="didTapLogin" HeightRequest="45" BackgroundColor="#7C56EE" TextColor="White" Grid.Row="0" Grid.Column="0" FontFamily="FjallaOne-Regular">
+                </Button>
+                <Button Text="CREATE AN ACCOUNT" Clicked="didTapSignup" HeightRequest="45" BackgroundColor="White" TextColor="#7C56EE" BorderColor="#7C56EE" BorderWidth="2" Grid.Row="0" Grid.Column="1">
+                </Button>
+            </Grid>
+            <Grid>
+                <Button Text="SIGN IN" Clicked="didTapLogin" HeightRequest="45" BackgroundColor="#7C56EE" TextColor="White" Grid.Row="0" Grid.Column="0" FontFamily="Roboto-Regular">
+                </Button>
+                <Button Text="CREATE AN ACCOUNT" Clicked="didTapSignup" HeightRequest="45" BackgroundColor="White" TextColor="#7C56EE" BorderColor="#7C56EE" BorderWidth="2" Grid.Row="1" Grid.Column="0">
+                </Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

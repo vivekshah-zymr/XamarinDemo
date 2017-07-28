@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.SignUpPage" Title="First things, first!">
+	<ContentPage.Content>
+            <ScrollView>
+
+        <StackLayout Spacing="20" Padding="15">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Welcome" ForegroundColor="Black" FontAttributes="Bold" FontSize="30" />
+                        <Span Text="&#xA; to MyApp!" ForegroundColor="#C1C1C1" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="Name" FontSize="14"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="iconPerson" HorizontalOptions="Start" />
+                <Entry Text="" FontSize="Small" Placeholder="Name" Keyboard="Default" x:Name="txtName" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <Label Text="Email" FontSize="14"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="iconEmail" HorizontalOptions="Start" />
+                <Entry Text="" FontSize="Small" Placeholder="Username" Keyboard="Email" x:Name="txtUsername" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <Label Text="Gender" FontSize="14"></Label>
+            <Grid>
+                <Button Text="Male" Grid.Row="0" Grid.Column="0" Image="radioSelect">
+                </Button>
+                <Button Text="Female" Grid.Row="0" Grid.Column="1" Image="radioDeselect">
+                </Button>
+            </Grid>
+            <Label Text="Password" FontSize="14"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="iconPassword" />
+                <Entry Text="" FontSize="Small" Placeholder="Password" IsPassword="true" x:Name="txtPassword" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <Label Text="Confirm Password" FontSize="14"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="iconPassword" />
+                <Entry Text="" FontSize="Small" Placeholder="Password" IsPassword="true" x:Name="txtConfrimPassword" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <Button Text="LOGIN" BackgroundColor="#7C56EE" TextColor="White">
+            </Button>
+            <Image Source="orOption" />
+            <Button Text="LOGIN WITH FACEBOOK" BackgroundColor="#3B5998" TextColor="White">
+            </Button>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

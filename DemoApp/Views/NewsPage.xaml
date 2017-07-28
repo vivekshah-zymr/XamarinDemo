@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.NewsPage" NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
+                <Button Clicked="didTapBack" Image="iconBack" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
+                <Label Text="News" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
+                <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
+            </StackLayout>
+            <Image BackgroundColor="#C1C1C1" HeightRequest="1" Margin="0" />
+            <!--<Label Text="{Binding FirstName}" FontSize="Medium" FontAttributes="Bold" />-->
+            <ListView x:Name="newsListView" RowHeight="306" SeparatorVisibility="None" ItemTapped="OnItemTapped">
+                <!--  ItemSelected="OnItemSelected" -->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Image Margin="14,0" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="304" Aspect="Fill" />
+                                <Image Margin="19,7,18,5" Source="{Binding Image}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                                <Button Margin="30,20,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding newsID}" Image="iconWatchlist" WidthRequest="30" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start" />
+                                <Button Margin="0,20,30,0" Clicked="didTapLike" CommandParameter="{Binding newsID}" Image="iconShare" WidthRequest="30" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" />
+                                <Button Margin="0,20,70,0" Clicked="didTapShare" CommandParameter="{Binding newsID}" Image="iconLike" WidthRequest="30" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" />
+                                <Label Margin="30,210,30,5" Text="{Binding Type}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#333333" HeightRequest="35" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                                <Label Margin="30,245,30,5" Text="{Binding Name}" FontSize="15" FontFamily="Roboto-Regular" TextColor="#919191" HeightRequest="40" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

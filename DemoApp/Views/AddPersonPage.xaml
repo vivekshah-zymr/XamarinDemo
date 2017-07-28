@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.AddPersonPage" NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="44" Orientation="Horizontal" Padding="0,20,0,0">
+                <Button Clicked="didTapBack" Image="iconBack" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
+                <Label Text="Add Person" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" Margin="0,0,44,0" TextColor="#333333" FontFamily="Roboto-Regular" />
+            </StackLayout>
+            <StackLayout Spacing="20" Padding="15">
+                <Label Text="Name" FontSize="14">
+                </Label>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="iconPerson" HorizontalOptions="Start" />
+                    <Entry Text="{Binding Name}" FontSize="Small" Placeholder="Name" Keyboard="Default" x:Name="txtName" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <Label Text="Phone no" FontSize="14">
+                </Label>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="iconEmail" HorizontalOptions="Start" />
+                    <Entry Text="{Binding PhoneNumber}" FontSize="Small" Placeholder="Phone number" Keyboard="Email" x:Name="txtPhone" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <Button Text="Save" BackgroundColor="#7C56EE" TextColor="White" Clicked="didTapSave" />
+                <Button Text="Delete" BackgroundColor="#3B5998" TextColor="White" Clicked="didTapDelete" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

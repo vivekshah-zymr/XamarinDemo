@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.LoginPage" NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F5F5F6">
+            <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
+                <Button Clicked="didTapBack" Image="iconBack" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent"/>
+                <Label Text="Get in the groove!" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" Margin="0,0,44,0" FontFamily="Roboto-Regular" />
+                <!--<Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="64" HorizontalOptions="End" BackgroundColor="Transparent" />-->
+            </StackLayout>
+            <StackLayout Padding="15">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Welcome" ForegroundColor="Black" FontAttributes="Bold" FontSize="30" FontFamily="FjallaOne-Regular" />
+                            <Span Text="&#xA; to MyApp!" ForegroundColor="#C1C1C1" FontFamily="FjallaOne-Regular" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Orientation="Horizontal" Margin="0,50,0,0">
+                    <Image Source="iconEmail" HorizontalOptions="Start" />
+                    <Entry Text="" FontSize="Small" Placeholder="Email" Keyboard="Email" x:Name="txtEmail" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <Image BackgroundColor="#C1C1C1" HeightRequest="1" />
+                <Label x:Name="lblEmailError" Text="Please enter the correct email" FontSize="12" FontFamily="Roboto-Regular" TextColor="#FC002F" IsVisible="false" />
+                <StackLayout Orientation="Horizontal" Margin="0,15,0,0">
+                    <Image Source="iconPassword" />
+                    <Entry Text="" FontSize="Small" Placeholder="Password" IsPassword="true" x:Name="txtPassword" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <Image BackgroundColor="#C1C1C1" HeightRequest="1" />
+                <Label x:Name="lblPasswordError" Text="Please enter the password" FontSize="12" FontFamily="Roboto-Regular" TextColor="#FC002F" IsVisible="false" />
+                <Button Text="I don't remember my password" Clicked="didTapForgotPass" TextColor="#333333" FontSize="13" HorizontalOptions="End" />
+                <Button Text="LOGIN" Clicked="didTapLogin" BackgroundColor="#7C56EE" TextColor="White"  FontFamily="FjallaOne-Regular" Margin="0,20,0,0" />
+                <Image Source="orOption" />
+                <Button Text="LOGIN WITH FACEBOOK" Clicked="didTapLoginWithFB" BackgroundColor="#3B5998" TextColor="White" FontFamily="FjallaOne-Regular" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
