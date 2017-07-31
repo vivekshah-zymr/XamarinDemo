@@ -168,6 +168,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180.png" />
+    <ImageAsset Include="Assets.xcassets\iconProfile.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconProfile.imageset\ic_prs_box_off%401x.png" />
+    <ImageAsset Include="Assets.xcassets\iconProfile.imageset\ic_prs_box_off%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconProfile.imageset\ic_prs_box_off%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -189,6 +193,7 @@
     <Folder Include="Assets.xcassets\radioSelect.imageset\" />
     <Folder Include="Assets.xcassets\bgNews.imageset\" />
     <Folder Include="Assets.xcassets\iconAdd.imageset\" />
+    <Folder Include="Assets.xcassets\iconProfile.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

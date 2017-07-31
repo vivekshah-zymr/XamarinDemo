@@ -6,7 +6,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <local:HomePage />
+                <local:HomePage NavigationPage.HasNavigationBar="false"/>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

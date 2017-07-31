@@ -4,15 +4,15 @@
         <local:SliderPage x:Name="sliderPage" />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage>
-            <x:Arguments>
+        <!--<NavigationPage> 
+            <x:Arguments>-->
                 <TabbedPage>
-                    <local:MoviePage Title="Movie" Icon="iconMovie.png" />
-                    <local:MusicPage Title="Music" Icon="iconMusic.png" />
-                    <local:NewsPage Title="News" Icon="iconNews.png" />
-                    <local:BoxofficePage Title="BoxOffice" Icon="iconHome.png" />
+                    <local:MoviePage Title="Movie" Icon="iconMovie.png"/>
+                    <local:MusicPage Title="Music" Icon="iconMusic.png"/>
+                    <local:NewsPage Title="News" Icon="iconNews.png"/>
+                    <local:BoxofficePage Title="BoxOffice" Icon="iconHome.png"/>
                 </TabbedPage>
-            </x:Arguments>
-        </NavigationPage>
+            <!--</x:Arguments>
+        </NavigationPage>-->
     </MasterDetailPage.Detail>
 </MasterDetailPage>

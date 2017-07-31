@@ -24,17 +24,13 @@ namespace DemoApp.Views
             User user = new User();
             user.FirstName = "Static data";
 
-			//var homePage = new HomePage();
-			//homePage.BindingContext = user;
-			//Navigation.PushAsync(homePage);
-
-            var homePage = new MasterPage();
+			var homePage = new HomePage();
 			homePage.BindingContext = user;
-			NavigationPage.SetHasNavigationBar(this, false);
-			NavigationPage.SetHasNavigationBar(homePage, false);
 			Navigation.PushAsync(homePage);
 
-
+   //         var masterPage = new MasterPage();
+			//masterPage.BindingContext = user;
+			//Navigation.PushAsync(masterPage);
 		}
 
         protected async void didTapLogin1(object sender, EventArgs e)

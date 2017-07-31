@@ -12,9 +12,28 @@ namespace DemoApp.Views
             InitializeComponent();
         }
 
-		//async void OnBackButtonClicked(object sender, EventArgs e)
-		//{
-		//	await Navigation.PopAsync();
-		//}
+        void didTapSlider(object sender, EventArgs e)
+        {
+			int i = 1;
+
+			while (Navigation.NavigationStack.Count > 0 && Navigation.NavigationStack.Count >= i)
+			{
+                var stackPage = Navigation.NavigationStack[i - 1];
+				System.Diagnostics.Debug.WriteLine("=======: " + stackPage);
+                if(stackPage.GetType() == typeof(HomePage))
+                {
+                    ((HomePage)stackPage).IsPresented = true;
+                    break;
+                }
+				i++;
+			}
+        }
+
+        void didTapSearch(object sender, EventArgs e)
+        {
+            //Navigation.PushAsync(new HomePage());
+            Navigation.PopAsync();
+            //Navigation.PopAsync();
+        }
     }
 }

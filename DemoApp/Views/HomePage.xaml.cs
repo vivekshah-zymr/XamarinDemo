@@ -10,6 +10,6 @@ namespace DemoApp.Views
         public HomePage()
         {
             InitializeComponent();
-        } 
+        }
     }
 }

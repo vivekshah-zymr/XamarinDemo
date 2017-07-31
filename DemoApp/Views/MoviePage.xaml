@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.MoviePage" Title="Movie List" NavigationPage.HasNavigationBar="false" >
-    <ContentPage.Content >
-        <TableView Intent="Settings">
-            <TableRoot>
-                <TableSection Title="Settings type">
-                    <EntryCell Text="This is text field" Keyboard="Email" Label="Email: " LabelColor="Olive" />
-                    <SwitchCell Text="New Mail" On="true" />
-                </TableSection>
-            </TableRoot>
-        </TableView>
-
-
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.MoviePage" Title="Movie List" NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
+                <Button Clicked="didTapSlider" Image="iconProfile" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
+                <Label Text="Movies" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
+                <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
+            </StackLayout>
+            <Image BackgroundColor="#C1C1C1" HeightRequest="1" Margin="0" />
+            <TableView Intent="Settings">
+                <TableRoot>
+                    <TableSection Title="Settings type">
+                        <EntryCell Text="This is text field" Keyboard="Email" Label="Email: " LabelColor="Olive" />
+                        <SwitchCell Text="New Mail" On="true" />
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
