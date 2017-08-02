@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.SliderPage" Title="Menu" NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#F5F5F6">
-            <Label Text="Hello , I am slider" />
-            <Button Text="Logout" Clicked="didTapLogout" BackgroundColor="#7C56EE" TextColor="White" FontFamily="FjallaOne-Regular" Margin="0,20,0,0" />
+        <StackLayout BackgroundColor="#F9F9F9">
+            <StackLayout HeightRequest="180" Orientation="Horizontal" BackgroundColor="White" Margin="0,20,0,0">
+                <Grid>
+                    <Image x:Name="imgViewProfile" VerticalOptions="Center" WidthRequest="106" HeightRequest="127" Source="https://www.atomix.com.au/media/2015/06/atomix_user31.png" Margin="0,0,0,0" Aspect="AspectFit" />
+                    <Button Clicked="didTapOpenCamera" VerticalOptions="Center" WidthRequest="106" HeightRequest="127" Margin="0,0,0,0" />
+                </Grid>
+                <Label Text="First Name" VerticalOptions="Center" Margin="7,0,0,0" />
+            </StackLayout>
+            <Grid>
+                <Label Text="My List" TextColor="#666666" VerticalTextAlignment="Center" HeightRequest="45" Grid.Row="0" Grid.Column="0" FontFamily="Roboto-Regular" Margin="20,0,0,0" />
+                <Button Text="My News" Clicked="didTapLogout" HeightRequest="45" TextColor="#666666" Grid.Row="1" Grid.Column="0" FontFamily="Roboto-Regular" />
+                <Button Text="My Videos" Clicked="didTapLogout" HeightRequest="45" TextColor="#666666" Grid.Row="2" Grid.Column="0" FontFamily="Roboto-Regular" />
+                <Button Text="My Movies" Clicked="didTapLogout" HeightRequest="45" TextColor="#666666" Grid.Row="3" Grid.Column="0" FontFamily="Roboto-Regular" />
+                <Button Text="Logout" Clicked="didTapLogout" HeightRequest="45" TextColor="#666666" Grid.Row="4" Grid.Column="0" FontFamily="Roboto-Regular" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

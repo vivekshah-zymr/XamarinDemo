@@ -48,5 +48,7 @@
 		<string>fonts/FjallaOne-Regular.ttf</string>
 		<string>fonts/Lobster-Regular.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Demo app needs access to the camera to take photos.</string>
 </dict>
 </plist>
