@@ -4,8 +4,8 @@
         <StackLayout BackgroundColor="#F9F9F9">
             <StackLayout HeightRequest="180" Orientation="Horizontal" BackgroundColor="White" Margin="0,20,0,0">
                 <Grid>
-                    <Image x:Name="imgViewProfile" VerticalOptions="Center" WidthRequest="106" HeightRequest="127" Source="https://www.atomix.com.au/media/2015/06/atomix_user31.png" Margin="0,0,0,0" Aspect="AspectFit" />
-                    <Button Clicked="didTapOpenCamera" VerticalOptions="Center" WidthRequest="106" HeightRequest="127" Margin="0,0,0,0" />
+                    <Image x:Name="imgViewProfile" VerticalOptions="Center" WidthRequest="106" HeightRequest="127" Source="https://www.atomix.com.au/media/2015/06/atomix_user31.png" Margin="7,0,0,0" Aspect="AspectFit" />
+                    <Button x:Name="btnProfilePic" BorderWidth="1" BorderColor="Blue" Clicked="didTapOpenCamera" VerticalOptions="Center" WidthRequest="106" HeightRequest="130" Margin="7,0,0,0" BackgroundColor="Transparent" />
                 </Grid>
                 <Label Text="First Name" VerticalOptions="Center" Margin="7,0,0,0" />
             </StackLayout>

@@ -144,6 +144,7 @@
     <Compile Include="SplashActivity.cs" />
     <Compile Include="SQLite_Android.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="PicturePickerImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

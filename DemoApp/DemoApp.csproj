@@ -122,12 +122,14 @@
       <DependentUpon>SliderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Utility.cs" />
+    <Compile Include="Utils\MediaPicker\PicturePicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="Models\" />
     <Folder Include="ServiceManagers\" />
     <Folder Include="DBHelper\" />
+    <Folder Include="Utils\MediaPicker\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

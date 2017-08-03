@@ -17,9 +17,9 @@
                             <Grid>
                                 <Image Margin="14,0" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="304" Aspect="Fill" />
                                 <Image Margin="19,7,18,5" Source="{Binding Image}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
-                                <Button Margin="30,20,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding newsID}" Image="iconWatchlist" WidthRequest="30" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start" />
-                                <Button Margin="0,20,30,0" Clicked="didTapLike" CommandParameter="{Binding newsID}" Image="iconShare" WidthRequest="30" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" />
-                                <Button Margin="0,20,70,0" Clicked="didTapShare" CommandParameter="{Binding newsID}" Image="iconLike" WidthRequest="30" HeightRequest="30" HorizontalOptions="End" VerticalOptions="Start" />
+                                <Button Margin="30,20,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding newsID}" Image="iconWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent"/>
+                                <Button Margin="0,20,30,0" Clicked="didTapShare" CommandParameter="{Binding newsID}" Image="iconShare" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                                <Button Margin="0,20,70,0" Clicked="didTapLike" CommandParameter="{Binding newsID}" Image="iconLike" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
                                 <Label Margin="30,210,30,5" Text="{Binding Type}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#333333" HeightRequest="35" LineBreakMode="WordWrap" VerticalOptions="Start" />
                                 <Label Margin="30,245,30,5" Text="{Binding Name}" FontSize="15" FontFamily="Roboto-Regular" TextColor="#919191" HeightRequest="40" LineBreakMode="WordWrap" VerticalOptions="Start" />
                             </Grid>
