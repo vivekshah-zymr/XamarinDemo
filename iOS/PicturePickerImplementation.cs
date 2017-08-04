@@ -6,6 +6,7 @@ using UIKit;
 using Xamarin.Forms;
 using DemoApp.iOS;
 using DemoApp.Utils.MediaPicker;
+using DemoApp.Views;
 
 [assembly: Dependency(typeof(PicturePickerImplementation))]
 
@@ -30,7 +31,7 @@ namespace DemoApp.iOS
             imagePicker.Canceled += OnImagePickerCancelled;
 
             // Present UIImagePickerController;
-            UIWindow window = UIApplication.SharedApplication.KeyWindow;
+			UIWindow window = UIApplication.SharedApplication.KeyWindow;
             var viewController = window.RootViewController;
             viewController.PresentModalViewController(imagePicker, true);
 

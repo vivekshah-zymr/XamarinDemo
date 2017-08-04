@@ -3,6 +3,8 @@ using System.IO;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using DemoApp.Utils.MediaPicker;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace DemoApp.Views
 {
@@ -37,18 +39,27 @@ namespace DemoApp.Views
             Application.Current.MainPage = new NavigationPage(new StartPage());
         }
 
-        private async void didTapOpenCamera(object sender, EventArgs e)
+        private async void didTapProfilePic(object sender, EventArgs e)
         {
-            //var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
-            //         if (photo != null){
-            //	imgViewProfile.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
-            //}
-
-            Stream stream = await DependencyService.Get<PicturePicker>().GetImageStreamAsync();
-            if (stream != null)
+            var action = await DisplayActionSheet("Change profile picture", "Cancel", null, "Take Photo", "Choose from Library");
+            Debug.WriteLine("Action: " + action);
+            if (action == "Take Photo")
             {
-                imgViewProfile.Source = ImageSource.FromStream(() => stream);
+                var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
+                if (photo != null)
+                {
+                    imgViewProfile.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
+                }
             }
-        }
+            else if (action == "Choose from Library")
+            {
+                await Task.Delay(50);
+				Stream stream = await DependencyService.Get<PicturePicker>().GetImageStreamAsync();
+				if (stream != null)
+				{
+				    imgViewProfile.Source = ImageSource.FromStream(() => stream);
+				}
+            }
+		}
     }
 }
