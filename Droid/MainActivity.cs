@@ -9,6 +9,7 @@ using Android.Widget;
 using Android.OS;
 using System.IO;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 
 namespace DemoApp.Droid
 {
@@ -19,6 +20,7 @@ namespace DemoApp.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            UserDialogs.Init(this);
 
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);

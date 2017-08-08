@@ -8,80 +8,87 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using DemoApp.Models;
 using DemoApp.ServiceManagers;
+using Acr.UserDialogs;
+using System.Threading.Tasks;
 
 namespace DemoApp.Views
 {
-    
+
     public partial class LoginPage : ContentPage
     {
         public LoginPage()
         {
             InitializeComponent();
         }
-		
-        void didTapLogin(object sender, EventArgs e)
-		{
+
+        private async void didTapLogin(object sender, EventArgs e)
+        {
+            // UserDialogs.Instance.AlertAsync("Test alert", "Alert Title");
+
+            UserDialogs.Instance.ShowLoading("Loading", MaskType.Black);
+            await Task.Delay(2000);
+            UserDialogs.Instance.HideLoading();
+            await Task.Delay(1000);
             User user = new User();
             user.FirstName = "Static data";
-
-			var homePage = new HomePage();
-			homePage.BindingContext = user;
-			Navigation.PushAsync(homePage);
-
-   //         var masterPage = new MasterPage();
-			//masterPage.BindingContext = user;
-			//Navigation.PushAsync(masterPage);
-		}
+            var homePage = new HomePage();
+            homePage.BindingContext = user;
+            await Navigation.PushAsync(homePage);
+        }
 
         protected async void didTapLogin1(object sender, EventArgs e)
-		{
+        {
             lblEmailError.IsVisible = false;
             lblPasswordError.IsVisible = false;
-            if (txtEmail.Text == ""){
+            if (txtEmail.Text == "")
+            {
                 lblEmailError.IsVisible = true;
                 lblEmailError.Text = "Please enter email address.";
                 return;
             }
-            else if (!Utils.Utility.isValidEmail(txtEmail.Text)){
+            else if (!Utils.Utility.isValidEmail(txtEmail.Text))
+            {
                 lblEmailError.IsVisible = true;
-                lblEmailError.Text = "Please enter valid email address.";    
+                lblEmailError.Text = "Please enter valid email address.";
                 return;
             }
-			if (txtPassword.Text == "")
-			{
-				lblPasswordError.IsVisible = true;
-				return;
-			}
+            if (txtPassword.Text == "")
+            {
+                lblPasswordError.IsVisible = true;
+                return;
+            }
 
             User user = new User();
             user.Email = txtEmail.Text;
             user.Password = txtPassword.Text;
             user = await App.loginManager.makeLoginAPICall(user);
 
-            if (user.UserID != 0) {
-				var homePage = new HomePage();
-				homePage.BindingContext = user;
-				await Navigation.PushAsync(homePage);
+            if (user.UserID != 0)
+            {
+                var homePage = new HomePage();
+                homePage.BindingContext = user;
+                await Navigation.PushAsync(homePage);
             }
-            else{
-				await DisplayAlert("MyApp", "Invalid email/password", "OK");
-			}
-		}
+            else
+            {
+                await DisplayAlert("MyApp", "Invalid email/password", "OK");
+            }
+        }
 
-		void didTapBack(object sender, EventArgs e)
-		{
+        void didTapBack(object sender, EventArgs e)
+        {
             Navigation.PopAsync();
-		}
+        }
 
-		void didTapForgotPass(object sender, EventArgs e)
-		{
+        void didTapForgotPass(object sender, EventArgs e)
+        {
             Navigation.PushAsync(new HomePage());
-			//Navigation.PopAsync();
-		}
+            //Navigation.PopAsync();
+        }
 
-		void didTapLoginWithFB(object sender, EventArgs e)
-		{
+        void didTapLoginWithFB(object sender, EventArgs e)
+        {
             Navigation.PushAsync(new PersonListPage());
-		}
+        }
     }
 }
