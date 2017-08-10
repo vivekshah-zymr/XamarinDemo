@@ -3,11 +3,14 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="#F9F9F9">
             <StackLayout HeightRequest="180" Orientation="Horizontal" BackgroundColor="White" Margin="0,20,0,0">
-                <Grid>
-                    <Image x:Name="imgViewProfile" VerticalOptions="Center" WidthRequest="106" HeightRequest="127" Source="https://www.atomix.com.au/media/2015/06/atomix_user31.png" Margin="7,0,0,0" Aspect="AspectFit" />
+                <Grid MinimumWidthRequest="110">
+                    <Image x:Name="imgViewProfile" VerticalOptions="Center" WidthRequest="110" HeightRequest="127" Source="https://www.atomix.com.au/media/2015/06/atomix_user31.png" Margin="7,0,0,0" Aspect="AspectFit" />
                     <Button x:Name="btnProfilePic" BorderWidth="1" BorderColor="Blue" Clicked="didTapProfilePic" VerticalOptions="Center" WidthRequest="106" HeightRequest="130" Margin="7,0,0,0" BackgroundColor="Transparent" />
                 </Grid>
-                <Label Text="First Name" VerticalOptions="Center" Margin="7,0,0,0" />
+                <Grid>
+                    <Label x:Name="lblFirstName" Text="First Name" HeightRequest="21" VerticalOptions="End" Margin="7,0,0,0" Grid.Row="0" Grid.Column="0" />
+                    <Label x:Name="lblEmail" Text="Email ID" HorizontalOptions="Fill"  HeightRequest="50"  Margin="7,0,0,0" Grid.Row="1" Grid.Column="0" FontSize="13" LineBreakMode="WordWrap" />
+                </Grid>
             </StackLayout>
             <Grid>
                 <Label Text="My List" TextColor="#666666" VerticalTextAlignment="Center" HeightRequest="45" Grid.Row="0" Grid.Column="0" FontFamily="Roboto-Regular" Margin="20,0,0,0" />

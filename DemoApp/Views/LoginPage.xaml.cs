@@ -7,9 +7,11 @@ using Newtonsoft.Json;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using DemoApp.Models;
+using DemoApp.Utils;
 using DemoApp.ServiceManagers;
 using Acr.UserDialogs;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace DemoApp.Views
 {
@@ -19,9 +21,26 @@ namespace DemoApp.Views
         public LoginPage()
         {
             InitializeComponent();
+            checkUserLoggedIn();
         }
 
-        private async void didTapLogin(object sender, EventArgs e)
+        async void checkUserLoggedIn(){
+			User user = Utility.getUserDetails();
+			if (user.UserID != 0)
+			{
+                var continueLogin = await App.Current.MainPage.DisplayAlert("Hey " + user.FirstName, "Do you want to continue as " + user.FirstName +"? \n Or Sign in with different account?", "Continue as "+ user.FirstName, "New SignIn");
+                if (continueLogin){
+					var homePage = new HomePage();
+					homePage.BindingContext = user;
+					await Navigation.PushAsync(homePage);
+                }
+                else{
+                    await Utils.Utility.clearAllApplicationProperty();
+                }
+			}
+		}
+
+        private async void didTapLogin1(object sender, EventArgs e)
         {
             // UserDialogs.Instance.AlertAsync("Test alert", "Alert Title");
 
@@ -36,7 +55,7 @@ namespace DemoApp.Views
             await Navigation.PushAsync(homePage);
         }
 
-        protected async void didTapLogin1(object sender, EventArgs e)
+        protected async void didTapLogin(object sender, EventArgs e)
         {
             lblEmailError.IsVisible = false;
             lblPasswordError.IsVisible = false;
@@ -83,7 +102,8 @@ namespace DemoApp.Views
 
         void didTapForgotPass(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new HomePage());
+            checkUserLoggedIn();
+            //Navigation.PushAsync(new HomePage());
             //Navigation.PopAsync();
         }
 

@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using DemoApp.Models;
 using Newtonsoft.Json.Linq;
 using DemoApp.ServiceManagers;
+using DemoApp.Utils;
 
 namespace DemoApp
 {
@@ -51,8 +52,11 @@ namespace DemoApp
                     var val = (resultDict["user"])["UserID"].ToString();
                     user.FirstName = (resultDict["user"])["FirstName"].ToString();
                     user.Email = (resultDict["user"])["Email"].ToString();
+                    user.ProfilePicURL = (resultDict["user"])["ProfileImage"].ToString();
                     user.UserID = Convert.ToInt32((resultDict["user"])["UserID"].ToString());
                     System.Diagnostics.Debug.WriteLine("successfully logged in , userID= {0}.", val);
+                    // set data in App settings
+                    await Utility.setUserDetails(user);
                 }
             }
             catch (Exception ex)
@@ -70,7 +74,7 @@ namespace DemoApp
             {
                 client.DefaultRequestHeaders.Add("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aXZlay5zaGFoQHp5bXIuY29tIiwidXNlcklkIjozMjAwNSwidXNlck5hbWUiOiJWaXZlayIsImp3dFRva2VuQ3JlYXRldGltZSI6MTUwMjI4MDY2ODg3OCwic291cmNlIjoiaW9zIiwiZXhwIjoxNTAyMzY1MjY4fQ.9l3nWR3uHrHegHbzS9VX1uJOo3HqmltGkvgykE558CpKOl5jsJvZXAQe0R15C-e5jiARqU-DnCAaBo_Gkaj0yQ");
 
-				var fileContent = new ByteArrayContent(user.ProfilePic);
+                var fileContent = new ByteArrayContent(user.ProfilePicData);
 				fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/png");
 				fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
 				{
@@ -88,11 +92,14 @@ namespace DemoApp
                     var resultDict = JObject.Parse(responseJSON);
                     if (response.IsSuccessStatusCode)
                     {
+						var val = (resultDict["user"])["UserID"].ToString();
 						user.FirstName = (resultDict["user"])["FirstName"].ToString();
 						user.Email = (resultDict["user"])["Email"].ToString();
+						user.ProfilePicURL = (resultDict["user"])["ProfileImage"].ToString();
 						user.UserID = Convert.ToInt32((resultDict["user"])["UserID"].ToString());
-						var val = (resultDict["user"])["UserID"].ToString();
-						System.Diagnostics.Debug.WriteLine("file upload details === ", val);
+						System.Diagnostics.Debug.WriteLine("successfully pic uploaded for , userID= {0}.", val);
+						// set data in App settings
+						await Utility.setUserDetails(user);
                     }
                 }
             }

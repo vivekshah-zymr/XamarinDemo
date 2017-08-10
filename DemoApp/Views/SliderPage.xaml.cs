@@ -14,9 +14,13 @@ namespace DemoApp.Views
         public SliderPage()
         {
             InitializeComponent();
+            User user = Utils.Utility.getUserDetails();
+            lblFirstName.Text = user.FirstName;
+            lblEmail.Text = user.Email;
+            imgViewProfile.Source = user.ProfilePicURL;
         }
 
-        void didTapLogout(object sender, EventArgs e)
+        async void didTapLogout(object sender, EventArgs e)
         {
             //System.Diagnostics.Debug.WriteLine("=====NavigationStack===== " + Navigation.NavigationStack.Count);
             //int i = 1;
@@ -37,6 +41,7 @@ namespace DemoApp.Views
 
             //Navigation.RemovePage(this);
 
+            await Utils.Utility.clearAllApplicationProperty();
             Application.Current.MainPage = new NavigationPage(new StartPage());
         }
 
@@ -53,7 +58,7 @@ namespace DemoApp.Views
                     using (MemoryStream ms = new MemoryStream())
                     {
                         photo.GetStream().CopyTo(ms);
-                        user.ProfilePic = ms.ToArray();
+                        user.ProfilePicData = ms.ToArray();
                     }
                     user = await App.loginManager.updateProfilePicAPICall(user);
                     if (user.UserID != 0)
@@ -72,7 +77,7 @@ namespace DemoApp.Views
                     MemoryStream ms = new MemoryStream();
                     stream.CopyTo(ms);
 					ms = new MemoryStream(ms.ToArray());
-					user.ProfilePic = ms.ToArray();
+					user.ProfilePicData = ms.ToArray();
                     user = await App.loginManager.updateProfilePicAPICall(user);
                     if (user.UserID != 0)
                     {
