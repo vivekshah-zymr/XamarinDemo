@@ -25,10 +25,10 @@ namespace DemoApp.Views
         {
             // UserDialogs.Instance.AlertAsync("Test alert", "Alert Title");
 
-            UserDialogs.Instance.ShowLoading("Loading", MaskType.Black);
+            UserDialogs.Instance.ShowLoading("", MaskType.Clear);
             await Task.Delay(2000);
             UserDialogs.Instance.HideLoading();
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
             User user = new User();
             user.FirstName = "Static data";
             var homePage = new HomePage();
@@ -61,8 +61,9 @@ namespace DemoApp.Views
             User user = new User();
             user.Email = txtEmail.Text;
             user.Password = txtPassword.Text;
+            UserDialogs.Instance.ShowLoading("", MaskType.Black);
             user = await App.loginManager.makeLoginAPICall(user);
-
+            UserDialogs.Instance.HideLoading();
             if (user.UserID != 0)
             {
                 var homePage = new HomePage();

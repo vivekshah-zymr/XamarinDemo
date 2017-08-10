@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using DemoApp.Utils.MediaPicker;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using DemoApp.Models;
 
 namespace DemoApp.Views
 {
@@ -48,18 +49,37 @@ namespace DemoApp.Views
                 var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
                 if (photo != null)
                 {
-                    imgViewProfile.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
+                    User user = new User();
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        photo.GetStream().CopyTo(ms);
+                        user.ProfilePic = ms.ToArray();
+                    }
+                    user = await App.loginManager.updateProfilePicAPICall(user);
+                    if (user.UserID != 0)
+                    {
+                        imgViewProfile.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
+                    }
                 }
             }
             else if (action == "Choose from Library")
             {
                 await Task.Delay(50);
-				Stream stream = await DependencyService.Get<PicturePicker>().GetImageStreamAsync();
-				if (stream != null)
-				{
-				    imgViewProfile.Source = ImageSource.FromStream(() => stream);
-				}
+                Stream stream = await DependencyService.Get<PicturePicker>().GetImageStreamAsync();
+                if (stream != null)
+                {
+                    User user = new User();
+                    MemoryStream ms = new MemoryStream();
+                    stream.CopyTo(ms);
+					ms = new MemoryStream(ms.ToArray());
+					user.ProfilePic = ms.ToArray();
+                    user = await App.loginManager.updateProfilePicAPICall(user);
+                    if (user.UserID != 0)
+                    {
+                        imgViewProfile.Source = ImageSource.FromStream(() => ms); ;
+                    }
+                }
             }
-		}
+        }
     }
 }

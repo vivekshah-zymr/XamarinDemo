@@ -24,5 +24,9 @@ namespace DemoApp.ServiceManagers
 		{
             return restService.DoLoginWithCredentials(user);
 		}
+        public Task<User> updateProfilePicAPICall(User user)
+		{
+			return restService.DoImageUpload(user);
+		}
     }
 }

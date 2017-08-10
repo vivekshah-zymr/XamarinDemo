@@ -9,5 +9,7 @@ namespace DemoApp.Models
         public int UserID { get; set; }
         public string FirstName { get; set; }
         public string Gender { get; set; }
+
+        public byte[] ProfilePic { get; set; }
     }
 }
