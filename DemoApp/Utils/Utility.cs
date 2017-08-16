@@ -35,6 +35,21 @@ namespace DemoApp.Utils
             }
         }
 
+  //      public static bool isInternet()
+  //      {
+		//	if (CrossConnectivity.Current.IsConnected)
+		//	{
+		//		return true;
+		//	}
+		//	else
+		//	{
+		//		// write your code if there is no Internet available      
+		//		return false;
+		//	}
+		//}
+
+		#region News Related API
+		
         public static async Task setApplicationProperty<T>(string key, T value)
         {
             Application.Current.Properties[key] = value;
@@ -57,7 +72,8 @@ namespace DemoApp.Utils
             await setApplicationProperty(Constants.USER_ID, user.UserID);
             await setApplicationProperty(Constants.USER_FNAME, user.FirstName);
             await setApplicationProperty(Constants.USER_EMAIL, user.Email);
-            await setApplicationProperty(Constants.USER_PIC, user.ProfilePicURL);
+            await setApplicationProperty(Constants.USER_PIC, user.ProfileImage);
+            await setApplicationProperty(Constants.USER_AUTH, user.Authorization);
         }
 
         public static User getUserDetails()
@@ -68,9 +84,12 @@ namespace DemoApp.Utils
                 user.UserID = getApplicationProperty<int>(Constants.USER_ID);
                 user.FirstName = getApplicationProperty<string>(Constants.USER_FNAME);
                 user.Email = getApplicationProperty<string>(Constants.USER_EMAIL);
-                user.ProfilePicURL = getApplicationProperty<string>(Constants.USER_PIC);
+                user.ProfileImage = getApplicationProperty<string>(Constants.USER_PIC);
+                user.Authorization = getApplicationProperty<string>(Constants.USER_AUTH);
             }
             return user;
         }
-    }
+
+         #endregion
+	}
 }

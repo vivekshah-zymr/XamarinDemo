@@ -12,5 +12,6 @@ namespace DemoApp
         public static string USER_FNAME = "firstName";
         public static string USER_PIC = "profilePic";
         public static string USER_EMAIL = "userEmail";
+        public static string USER_AUTH = "authorization";
 	}
 }

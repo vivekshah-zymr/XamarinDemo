@@ -15,6 +15,7 @@ using DemoApp.Models;
 using Newtonsoft.Json.Linq;
 using DemoApp.ServiceManagers;
 using DemoApp.Utils;
+using System.Linq;
 
 namespace DemoApp
 {
@@ -27,6 +28,8 @@ namespace DemoApp
             client = new HttpClient();
             client.MaxResponseContentBufferSize = 256000;
         }
+
+        #region Login Related API 
 
         public async Task<User> DoLoginWithCredentials(User user)
         {
@@ -49,12 +52,12 @@ namespace DemoApp
                 {
                     var responseJSON = response.Content.ReadAsStringAsync().Result;
                     var resultDict = JObject.Parse(responseJSON);
-                    var val = (resultDict["user"])["UserID"].ToString();
-                    user.FirstName = (resultDict["user"])["FirstName"].ToString();
-                    user.Email = (resultDict["user"])["Email"].ToString();
-                    user.ProfilePicURL = (resultDict["user"])["ProfileImage"].ToString();
-                    user.UserID = Convert.ToInt32((resultDict["user"])["UserID"].ToString());
-                    System.Diagnostics.Debug.WriteLine("successfully logged in , userID= {0}.", val);
+                    user = JsonConvert.DeserializeObject<User>(resultDict["user"].ToString());
+					IEnumerable<string> values;
+					if (response.Headers.TryGetValues("authorization", out values))
+					{
+                        user.Authorization = values.First();
+					}
                     // set data in App settings
                     await Utility.setUserDetails(user);
                 }
@@ -69,22 +72,22 @@ namespace DemoApp
         public async Task<User> DoImageUpload(User user)
         {
             var uri = new Uri(Constants.BASE_URL + "ums/ws/user/profile");
-
+            string authKey = user.Authorization;
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aXZlay5zaGFoQHp5bXIuY29tIiwidXNlcklkIjozMjAwNSwidXNlck5hbWUiOiJWaXZlayIsImp3dFRva2VuQ3JlYXRldGltZSI6MTUwMjI4MDY2ODg3OCwic291cmNlIjoiaW9zIiwiZXhwIjoxNTAyMzY1MjY4fQ.9l3nWR3uHrHegHbzS9VX1uJOo3HqmltGkvgykE558CpKOl5jsJvZXAQe0R15C-e5jiARqU-DnCAaBo_Gkaj0yQ");
+                client.DefaultRequestHeaders.Add("Authorization",authKey);
 
                 var fileContent = new ByteArrayContent(user.ProfilePicData);
-				fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/png");
-				fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
-				{
-					Name = "profile",
-					FileName = "photo.png"
-				};
+                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/png");
+                fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                {
+                    Name = "profile",
+                    FileName = "photo.png"
+                };
 
                 MultipartFormDataContent content = new MultipartFormDataContent();
                 content.Add(fileContent);
-                 
+
                 HttpResponseMessage response = null;
                 using (response = await client.PostAsync(uri, content))
                 {
@@ -92,12 +95,8 @@ namespace DemoApp
                     var resultDict = JObject.Parse(responseJSON);
                     if (response.IsSuccessStatusCode)
                     {
-						var val = (resultDict["user"])["UserID"].ToString();
-						user.FirstName = (resultDict["user"])["FirstName"].ToString();
-						user.Email = (resultDict["user"])["Email"].ToString();
-						user.ProfilePicURL = (resultDict["user"])["ProfileImage"].ToString();
-						user.UserID = Convert.ToInt32((resultDict["user"])["UserID"].ToString());
-						System.Diagnostics.Debug.WriteLine("successfully pic uploaded for , userID= {0}.", val);
+                        user = JsonConvert.DeserializeObject<User>(resultDict["user"].ToString());
+                        user.Authorization = authKey;
 						// set data in App settings
 						await Utility.setUserDetails(user);
                     }
@@ -105,5 +104,36 @@ namespace DemoApp
             }
             return user;
         }
+
+        #endregion
+
+        #region News Related API
+
+        public async Task<List<NewsModel>> GetNewsList(int pgNumber)
+        {
+            var uri = new Uri(Constants.BASE_URL + "nms/ws/news/all?PageSize=10&PageNumber=" + pgNumber);
+            List<NewsModel> newsList = new List<NewsModel>();
+            try
+            {
+                HttpResponseMessage response = null;
+                response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseJSON = response.Content.ReadAsStringAsync().Result;
+                    var resultDict = JObject.Parse(responseJSON);
+                    newsList = JsonConvert.DeserializeObject<List<NewsModel>>((resultDict["data"])["news"].ToString());
+                    if(newsList == null){
+                        newsList = new List<NewsModel>();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("ERROR {0}", ex.Message);
+            }
+            return newsList;
+        }
+
+        #endregion
     }
 }

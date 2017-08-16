@@ -9,5 +9,6 @@ namespace DemoApp.ServiceManagers
     {
         Task<User> DoLoginWithCredentials(User user);
         Task<User> DoImageUpload(User user);
+        Task<List<NewsModel>> GetNewsList(int pgNumber);
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.NewsDetailsPage" NavigationPage.HasNavigationBar="false">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.NewsDetailsPage" NavigationPage.HasNavigationBar="false" >
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
@@ -7,7 +7,13 @@
                 <Label Text="News Details" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
                 <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
             </StackLayout>
-            <Label Text="{Binding NewsTitle}" FontSize="Medium" FontAttributes="Bold" />
+            <Image Margin="0" BackgroundColor="#C1C1C1" HeightRequest="1" />
+
+                <Image Source="{Binding PosterImageUrl}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                <Label Margin="20,5" Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" />
+                <Image Margin="20,0" BackgroundColor="#C1C1C1" HeightRequest="1" />
+            
+            <!--            <WebView HeightRequest="1000" WidthRequest="1000" Source="http://www.xamarin.com" Navigated="webviewNavigated" Navigating="webviewNavigating" />-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

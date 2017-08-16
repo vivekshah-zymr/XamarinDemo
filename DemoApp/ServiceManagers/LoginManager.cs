@@ -28,5 +28,9 @@ namespace DemoApp.ServiceManagers
 		{
 			return restService.DoImageUpload(user);
 		}
+		public Task<List<NewsModel>> getNewsAPICall(int pageNumber)
+		{
+			return restService.GetNewsList(pageNumber);
+		}
     }
 }

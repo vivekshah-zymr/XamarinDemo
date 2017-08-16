@@ -10,22 +10,23 @@ namespace DemoApp.Views
         public BoxofficePage()
         {
             InitializeComponent();
-            listView.ItemsSource = new[] { "a", "b", "c" };
         }
 
-		public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+		void didTapBack(object sender, EventArgs e)
 		{
-			if (e.SelectedItem == null) return; // has been set to null, do not 'process' tapped event
-			DisplayAlert("Tapped", e.SelectedItem + " row was tapped", "OK");
-			((ListView)sender).SelectedItem = null; // de-select the row
+			Navigation.PopAsync();
 		}
 
-		public void OnCellClicked(object sender, EventArgs e)
+		void didTapSearch(object sender, EventArgs e)
 		{
-			var b = (Button)sender;
-			var t = b.CommandParameter;
-			//((ContentPage)((ListView)((StackLayout)b.ParentView).ParentView).ParentView).DisplayAlert("Clicked", t + " button was clicked", "OK");
-			//Debug.WriteLine("clicked" + t);
+			Navigation.PopAsync();
 		}
+
+		async void didTapPush(object sender, EventArgs e)
+		{
+
+            await Navigation.PushAsync(new AddPersonPage());
+		}
+
 	}
 }

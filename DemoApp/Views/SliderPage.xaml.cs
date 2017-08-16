@@ -11,13 +11,14 @@ namespace DemoApp.Views
 {
     public partial class SliderPage : ContentPage
     {
+        User user;
         public SliderPage()
         {
             InitializeComponent();
-            User user = Utils.Utility.getUserDetails();
+            user = Utils.Utility.getUserDetails();
             lblFirstName.Text = user.FirstName;
             lblEmail.Text = user.Email;
-            imgViewProfile.Source = user.ProfilePicURL;
+            imgViewProfile.Source = user.ProfileImage;
         }
 
         async void didTapLogout(object sender, EventArgs e)
@@ -73,7 +74,7 @@ namespace DemoApp.Views
                 Stream stream = await DependencyService.Get<PicturePicker>().GetImageStreamAsync();
                 if (stream != null)
                 {
-                    User user = new User();
+                    //User user = new User();
                     MemoryStream ms = new MemoryStream();
                     stream.CopyTo(ms);
 					ms = new MemoryStream(ms.ToArray());
