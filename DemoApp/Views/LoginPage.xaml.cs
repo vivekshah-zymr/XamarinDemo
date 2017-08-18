@@ -30,9 +30,9 @@ namespace DemoApp.Views
 			{
                 var continueLogin = await App.Current.MainPage.DisplayAlert("Hey " + user.FirstName, "Do you want to continue as " + user.FirstName +"? \n Or Sign in with different account?", "Continue as "+ user.FirstName, "New SignIn");
                 if (continueLogin){
-					var homePage = new HomePage();
+                    var homePage = new HomePage();
 					homePage.BindingContext = user;
-					await Navigation.PushAsync(homePage);
+                    await Navigation.PushAsync(homePage);
                 }
                 else{
                     await Utils.Utility.clearAllApplicationProperty();

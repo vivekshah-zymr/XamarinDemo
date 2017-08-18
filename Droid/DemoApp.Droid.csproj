@@ -219,6 +219,14 @@
     <AndroidResource Include="Resources\drawable-hdpi\iconAdd.png" />
     <AndroidResource Include="Resources\drawable\iconProfile.png" />
     <AndroidResource Include="Resources\drawable-hdpi\iconProfile.png" />
+    <AndroidResource Include="Resources\drawable\iconShareBlack.png" />
+    <AndroidResource Include="Resources\drawable\iconWatchlistBlack.png" />
+    <AndroidResource Include="Resources\drawable\iconLikeBlack.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iconShareBlack.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iconLikeBlack.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iconWatchlistBlack.png" />
+    <AndroidResource Include="Resources\drawable\iconPlay.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iconPlay.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fonts\FjallaOne-Regular.ttf" />

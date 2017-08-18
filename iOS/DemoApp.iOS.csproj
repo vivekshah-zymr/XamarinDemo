@@ -199,6 +199,22 @@
     <ImageAsset Include="Assets.xcassets\iconProfile.imageset\ic_prs_box_off%401x.png" />
     <ImageAsset Include="Assets.xcassets\iconProfile.imageset\ic_prs_box_off%402x.png" />
     <ImageAsset Include="Assets.xcassets\iconProfile.imageset\ic_prs_box_off%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconWatchlistBlack.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconWatchlistBlack.imageset\bookmark%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconWatchlistBlack.imageset\bookmark%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconWatchlistBlack.imageset\bookmark.png" />
+    <ImageAsset Include="Assets.xcassets\iconLikeBlack.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconLikeBlack.imageset\ic_like_1.png" />
+    <ImageAsset Include="Assets.xcassets\iconLikeBlack.imageset\ic_like_1%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconLikeBlack.imageset\ic_like_1%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconShareBlack.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconShareBlack.imageset\ic_share_1.png" />
+    <ImageAsset Include="Assets.xcassets\iconShareBlack.imageset\ic_share_1%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconShareBlack.imageset\ic_share_1%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconPlay.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconPlay.imageset\FCB_Icon_play%401x.png" />
+    <ImageAsset Include="Assets.xcassets\iconPlay.imageset\FCB_Icon_Play%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconPlay.imageset\FCB_ic_play%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -221,6 +237,10 @@
     <Folder Include="Assets.xcassets\bgNews.imageset\" />
     <Folder Include="Assets.xcassets\iconAdd.imageset\" />
     <Folder Include="Assets.xcassets\iconProfile.imageset\" />
+    <Folder Include="Assets.xcassets\iconWatchlistBlack.imageset\" />
+    <Folder Include="Assets.xcassets\iconLikeBlack.imageset\" />
+    <Folder Include="Assets.xcassets\iconShareBlack.imageset\" />
+    <Folder Include="Assets.xcassets\iconPlay.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
