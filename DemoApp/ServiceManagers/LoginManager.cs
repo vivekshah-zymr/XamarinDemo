@@ -32,5 +32,9 @@ namespace DemoApp.ServiceManagers
 		{
 			return restService.GetNewsList(pageNumber);
 		}
+		public Task<List<MusicModel>> getMusicAPICall(int pageNumber)
+		{
+			return restService.GetMusicList(pageNumber);
+		}
     }
 }

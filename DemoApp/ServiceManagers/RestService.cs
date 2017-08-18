@@ -134,6 +134,36 @@ namespace DemoApp
             return newsList;
         }
 
-        #endregion
-    }
+		#endregion
+
+		#region Music Related API
+
+        public async Task<List<MusicModel>> GetMusicList(int pgNumber)
+		{
+			var uri = new Uri(Constants.BASE_URL + "vms/ws/video/type/songs?PageSize=10&PageNumber=" + pgNumber);
+			List<MusicModel> musicList = new List<MusicModel>();
+			try
+			{
+				HttpResponseMessage response = null;
+				response = await client.GetAsync(uri);
+				if (response.IsSuccessStatusCode)
+				{
+					var responseJSON = response.Content.ReadAsStringAsync().Result;
+					var resultDict = JObject.Parse(responseJSON);
+					musicList = JsonConvert.DeserializeObject<List<MusicModel>>((resultDict["data"])["videos"].ToString());
+					if (musicList == null)
+					{
+						musicList = new List<MusicModel>();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine("ERROR {0}", ex.Message);
+			}
+			return musicList;
+		}
+
+		#endregion
+	}
 }

@@ -15,7 +15,6 @@ namespace DemoApp.Views
         void didTapSlider(object sender, EventArgs e)
         {
             int i = 1;
-
             while (Navigation.NavigationStack.Count > 0 && Navigation.NavigationStack.Count >= i)
             {
                 var stackPage = Navigation.NavigationStack[i - 1];

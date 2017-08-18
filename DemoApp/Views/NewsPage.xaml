@@ -8,15 +8,13 @@
                 <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
             </StackLayout>
             <Image BackgroundColor="#C1C1C1" HeightRequest="1" Margin="0" />
-            <!--<Label Text="{Binding FirstName}" FontSize="Medium" FontAttributes="Bold" />-->
             <ListView x:Name="newsListView" RowHeight="306" SeparatorVisibility="None" ItemTapped="OnItemTapped" ItemAppearing="cellItemAppeared">
-                <!--  ItemSelected="OnItemSelected" -->
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
                                 <Image Margin="14,0" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="304" Aspect="Fill" />
-                                <Image Margin="19,7,18,5" Source="{Binding PosterImageUrl}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                                <Image Margin="19,7,18,5" Source="{Binding ThumbnailImageUrl}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
                                 <Button Margin="30,20,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
                                 <Button Margin="0,20,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconShare" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
                                 <Button Margin="0,20,70,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconLike" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />

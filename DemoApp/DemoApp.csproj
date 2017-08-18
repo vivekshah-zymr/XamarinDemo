@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Utils\Utility.cs" />
     <Compile Include="Utils\MediaPicker\PicturePicker.cs" />
+    <Compile Include="Models\MusicModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />

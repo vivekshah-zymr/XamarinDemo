@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using DemoApp.Models;
+using System.Diagnostics;
 
 namespace DemoApp.Views
 {
@@ -13,19 +14,44 @@ namespace DemoApp.Views
         public NewsDetailsPage()
         {
             InitializeComponent();
+			
             //this.BindingContext = newsDetails;
         }
 
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+
+            string htmlString = "";
+			if (!String.IsNullOrEmpty(newsDetails.Text))
+			{
+				htmlString = newsDetails.Text;
+			}
+
+            var htmlSource = new HtmlWebViewSource();
+			htmlSource.Html = htmlString;
+			webviewNewsDetails.Source = htmlSource;
+		}
+
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+		}
+
 		void webviewNavigating(object sender, WebNavigatingEventArgs e)
 		{
+			var item = (Xamarin.Forms.WebView)sender;
+			Debug.WriteLine("webviewNavigating ======= " + item.HeightRequest);
+
 			//this.labelLoading.IsVisible = true; //display the label when navigating starts
 		}
 
-		/// <summary>
-		/// Called when the webview finished navigating. Hides the loading label.
-		/// </summary>
+		
 		void webviewNavigated(object sender, WebNavigatedEventArgs e)
 		{
+            
+            var item = (Xamarin.Forms.WebView)sender;
+            Debug.WriteLine("webviewNavigated === "+ item.HeightRequest);
 			//this.labelLoading.IsVisible = false; //remove the loading indicator when navigating is finished
 		}
 
