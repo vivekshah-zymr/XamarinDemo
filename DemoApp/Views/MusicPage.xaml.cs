@@ -79,10 +79,10 @@ namespace DemoApp.Views
             var displayTxt = ((MusicModel)e.Item).Id.ToString() + " " + ((MusicModel)e.Item).Title;
             //DisplayAlert("Item Tapped", displayTxt, "OK");
 
-            //var newsDetailsPage = new NewsDetailsPage();
-            //newsDetailsPage.newsDetails = (NewsModel)e.Item;
-            //newsDetailsPage.BindingContext = (NewsModel)e.Item;
-            //Navigation.PushAsync(newsDetailsPage);
+            var musicDetailsPage = new MusicDetailsPage();
+            musicDetailsPage.musicDetails = (MusicModel)e.Item;
+            musicDetailsPage.BindingContext = (MusicModel)e.Item;
+            Navigation.PushAsync(musicDetailsPage);
         }
 
         void didTapWatchlist(object sender, EventArgs e)

@@ -64,6 +64,9 @@
     <EmbeddedResource Include="Views\SliderPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\MusicDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -118,6 +121,9 @@
     <Compile Include="Utils\Utility.cs" />
     <Compile Include="Utils\MediaPicker\PicturePicker.cs" />
     <Compile Include="Models\MusicModel.cs" />
+    <Compile Include="Views\MusicDetailsPage.xaml.cs">
+      <DependentUpon>MusicDetailsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -183,6 +189,9 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.267\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Octane.Xam.VideoPlayer">
+      <HintPath>..\packages\Octane.Xam.VideoPlayer.1.2.3.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Octane.Xam.VideoPlayer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

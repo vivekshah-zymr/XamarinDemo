@@ -14,7 +14,7 @@
                         <ViewCell>
                             <Grid>
                                 <Image Margin="14,0" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="260" Aspect="Fill" />
-                                <Image Margin="20,6,18,5" Source="{Binding PosterImageUrl}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                                <Image Margin="20,6,18,5" Source="https://img.youtube.com/vi/{Binding YouTubeId}/0.jpg" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />  <!--{Binding PosterImageUrl}-->
                                 <Image Margin="0,-40,0,0" Source="iconPlay" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="50" WidthRequest="50" Aspect="AspectFit" />
                                 <Label Margin="30,16,20,0" Text="{Binding Title}" FontSize="20" FontFamily="FjallaOne-Regular" TextColor="#FFFFFF" HeightRequest="30" LineBreakMode="WordWrap" VerticalOptions="Start" />
                                 <Button Margin="28,206,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconWatchlistBlack" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />

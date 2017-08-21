@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -85,6 +85,26 @@ namespace DemoApp.Views
                         imgViewProfile.Source = ImageSource.FromStream(() => ms); ;
                     }
                 }
+
+
+			//await CrossMedia.Current.Initialize();
+
+//			MediaFile file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+//			{
+//				PhotoSize = PhotoSize.Medium
+//			});
+
+//			ld_prediction.IsRunning = false;
+
+//			if (file == null)
+//				return;
+
+//			image.Source = ImageSource.FromStream(() =>
+//			{
+//				return file.GetStream();
+//			});
+
+
             }
         }
     }

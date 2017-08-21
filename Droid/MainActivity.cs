@@ -10,12 +10,16 @@ using Android.OS;
 using System.IO;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Xamarin.Forms;
+using DemoApp.Views;
 
 namespace DemoApp.Droid
 {
     [Activity(Label = "DemoApp", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        private bool _allowLandscape;
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -24,6 +28,18 @@ namespace DemoApp.Droid
 
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+			//Calls from the view that should rotate
+            MessagingCenter.Subscribe<MusicDetailsPage>(this, "allowLandScapePortrait", sender =>
+			{
+				RequestedOrientation = ScreenOrientation.Unspecified;
+			});
+
+			//When the page is closed this is called
+			MessagingCenter.Subscribe<MusicDetailsPage>(this, "preventLandScape", sender =>
+			{
+				RequestedOrientation = ScreenOrientation.Portrait;
+			});
 
             LoadApplication(new App());
         }

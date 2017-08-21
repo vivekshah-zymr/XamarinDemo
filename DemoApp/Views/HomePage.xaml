@@ -5,11 +5,12 @@
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <TabbedPage>
-            <!--<NavigationPage Title="Movie" Icon="iconMovie.png">
+            <NavigationPage Title="Movie" Icon="iconMovie.png">
                 <x:Arguments>
+                    <local:MoviePage/>
                 </x:Arguments>
-            </NavigationPage>-->
-            <local:MoviePage Title="Movie" Icon="iconMovie.png" />
+            </NavigationPage>
+
             <NavigationPage Title="Music" Icon="iconMusic.png">
                 <x:Arguments>
                     <local:MusicPage />

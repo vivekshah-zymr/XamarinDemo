@@ -128,6 +128,12 @@
     <Reference Include="Plugin.Connectivity">
       <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.2\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
     </Reference>
+    <Reference Include="Octane.Xam.VideoPlayer">
+      <HintPath>..\packages\Octane.Xam.VideoPlayer.1.2.3.0\lib\Xamarin.iOS10\Octane.Xam.VideoPlayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Octane.Xam.VideoPlayer.iOS">
+      <HintPath>..\packages\Octane.Xam.VideoPlayer.1.2.3.0\lib\Xamarin.iOS10\Octane.Xam.VideoPlayer.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DemoApp\DemoApp.csproj">

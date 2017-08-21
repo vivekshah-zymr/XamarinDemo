@@ -15,9 +15,11 @@ namespace DemoApp.Views
         void didTapSlider(object sender, EventArgs e)
         {
             int i = 1;
-            while (Navigation.NavigationStack.Count > 0 && Navigation.NavigationStack.Count >= i)
+			var mainPage = Xamarin.Forms.Application.Current.MainPage;
+
+            while (mainPage.Navigation.NavigationStack.Count > 0 && mainPage.Navigation.NavigationStack.Count >= i)
             {
-                var stackPage = Navigation.NavigationStack[i - 1];
+                var stackPage = mainPage.Navigation.NavigationStack[i - 1];
                 System.Diagnostics.Debug.WriteLine("=======: " + stackPage);
                 if (stackPage.GetType() == typeof(HomePage))
                 {
