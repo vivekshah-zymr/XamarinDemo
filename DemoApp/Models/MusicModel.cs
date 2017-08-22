@@ -16,5 +16,9 @@ namespace DemoApp.Models
 		public string PublishStatus { get; set; }
 		public string ActiveStatus { get; set; }
 		public string LastUpdateTime { get; set; }
+
+        public bool isWatchlist { get; set; }
+        public bool isLike { get; set; }
     }
+
 }

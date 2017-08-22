@@ -18,7 +18,7 @@
                                 <Button Margin="30,20,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
                                 <Button Margin="0,20,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconShare" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
                                 <Button Margin="0,20,70,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconLike" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
-                                <Label Margin="30,210,30,5" Text="{Binding Title}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#333333" HeightRequest="35" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                                <Label Margin="30,210,30,5" Text="{Binding Title}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#333333" HeightRequest="30" LineBreakMode="WordWrap" VerticalOptions="Start" />
                                 <Label Margin="30,245,30,5" Text="{Binding Preview}" FontSize="15" FontFamily="Roboto-Regular" TextColor="#919191" HeightRequest="40" LineBreakMode="WordWrap" VerticalOptions="Start" />
                             </Grid>
                         </ViewCell>

@@ -18,7 +18,6 @@ namespace DemoApp.Droid
     [Activity(Label = "DemoApp", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        private bool _allowLandscape;
 
         protected override void OnCreate(Bundle bundle)
         {

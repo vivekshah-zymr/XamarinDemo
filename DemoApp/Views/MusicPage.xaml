@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.MusicPage" NavigationPage.HasNavigationBar="false">
-	<ContentPage.Content>
+    <ContentPage.Content>
         <StackLayout>
             <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
                 <Button Clicked="didTapBack" Image="iconBack" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
@@ -14,12 +14,44 @@
                         <ViewCell>
                             <Grid>
                                 <Image Margin="14,0" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="260" Aspect="Fill" />
-                                <Image Margin="20,6,18,5" Source="https://img.youtube.com/vi/{Binding YouTubeId}/0.jpg" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />  <!--{Binding PosterImageUrl}-->
-                                <Image Margin="0,-40,0,0" Source="iconPlay" HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="50" WidthRequest="50" Aspect="AspectFit" />
+                                <Image Margin="20,6,18,5" Source="{Binding YouTubeId,StringFormat='https://img.youtube.com/vi/{0}/0.jpg'}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                                <!--{Binding PosterImageUrl}-->
+                                <Image Margin="0,-40,0,0" Source="iconPlay" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" WidthRequest="50" Aspect="AspectFit" />
                                 <Label Margin="30,16,20,0" Text="{Binding Title}" FontSize="20" FontFamily="FjallaOne-Regular" TextColor="#FFFFFF" HeightRequest="30" LineBreakMode="WordWrap" VerticalOptions="Start" />
-                                <Button Margin="28,206,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconWatchlistBlack" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+
+                                <Button Margin="28,206,70,0"  Clicked="didTapWatchlist" CommandParameter="{Binding Id}" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Image" Value="iconWatchlistBlack">
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <!-- This doesn't work because we're in a DataTemplate! -->
+                                                <DataTrigger TargetType="Button" Binding="{Binding isWatchlist}" Value="True">
+                                                    <Setter Property="Image" Value="iconWatchlistSelected" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+
+
+                                <!--<Button x:Name="btnWatch" Margin="28,206,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />-->
                                 <Button Margin="0,206,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconShareBlack" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
-                                <Button Margin="0,206,70,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconLikeBlack" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+
+                                <Button Margin="0,206,70,0"  Clicked="didTapLike" CommandParameter="{Binding Id}" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Image" Value="iconLikeBlack">
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger TargetType="Button" Binding="{Binding isLike}" Value="True">
+                                                    <Setter Property="Image" Value="iconLikeSelected" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

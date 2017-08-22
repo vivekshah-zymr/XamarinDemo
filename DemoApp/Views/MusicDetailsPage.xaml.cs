@@ -26,6 +26,7 @@ namespace DemoApp.Views
             base.OnDisappearing();
             MessagingCenter.Send(this, "preventLandScape");
         }
+
         #region News Items And Other Tap Events
 
         void didTapBack(object sender, EventArgs e)

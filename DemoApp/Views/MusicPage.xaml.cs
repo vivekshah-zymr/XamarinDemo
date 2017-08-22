@@ -5,6 +5,10 @@ using Xamarin.Forms;
 using DemoApp.Models;
 using System.Linq;
 using Acr.UserDialogs;
+using System.Threading.Tasks;
+using System.Drawing;
+using System.IO;
+using Splat;
 
 namespace DemoApp.Views
 {
@@ -14,6 +18,7 @@ namespace DemoApp.Views
         ObservableCollection<MusicModel> musicCollection;
         int pageNumberMusic = 1;
         bool isLoading;
+        public bool isActive;
 
         #region Basic Page Methods
 
@@ -45,6 +50,20 @@ namespace DemoApp.Views
             List<MusicModel> currentMusicList = await App.loginManager.getMusicAPICall(pageNumberMusic);
             if (currentMusicList != null && currentMusicList.Count() > 0)
             {
+                //set dummy like and watchlist 
+                int i = 0;
+                foreach (MusicModel m in currentMusicList)
+                {
+                    if (i % 2 == 0)
+                    {
+                        m.isWatchlist = true;
+                    }
+                    if (i % 4 == 0)
+                    {
+                        m.isLike = true;
+                    }
+                    i++;
+                }
                 musicList.AddRange(currentMusicList);
                 musicCollection = new ObservableCollection<MusicModel>(musicList);
                 musicListView.ItemsSource = musicCollection;
@@ -85,18 +104,27 @@ namespace DemoApp.Views
             Navigation.PushAsync(musicDetailsPage);
         }
 
-        void didTapWatchlist(object sender, EventArgs e)
+        async void didTapWatchlist(object sender, EventArgs e)
         {
             var item = (Xamarin.Forms.Button)sender;
             MusicModel listitem = (from music in musicList where music.Id == (int)item.CommandParameter select music).FirstOrDefault<MusicModel>();
-            DisplayAlert("Music Watchlist", listitem.Title, "Ok");
-        }
+            listitem.isWatchlist = !listitem.isWatchlist;
+            item.Image = listitem.isWatchlist ? "iconWatchlistSelected" : "iconWatchlistBlack";
 
-        void didTapLike(object sender, EventArgs e)
+            string msg = listitem.isWatchlist ? "Added to My List!" : "Remove from My List!";
+            UserDialogs.Instance.ShowLoading(msg, MaskType.None);
+            await Task.Delay(800);
+            UserDialogs.Instance.HideLoading();
+            //DisplayAlert("Music Watchlist",x listitem.Title, "Ok");
+        }
+		
+		void didTapLike(object sender, EventArgs e)
         {
             var item = (Xamarin.Forms.Button)sender;
             MusicModel listitem = (from music in musicList where music.Id == (int)item.CommandParameter select music).FirstOrDefault<MusicModel>();
-            DisplayAlert("Music Like", listitem.Title, "Ok");
+            listitem.isLike = !listitem.isLike;
+            item.Image = listitem.isLike ? "iconLikeSelected" : "iconLikeBlack";
+            //DisplayAlert("Music Like", listitem.Title, "Ok");
         }
 
         void didTapShare(object sender, EventArgs e)

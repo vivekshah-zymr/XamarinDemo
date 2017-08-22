@@ -4,7 +4,7 @@
         <StackLayout>
             <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
                 <Button Clicked="didTapBack" Image="iconBack" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
-                <Label Text="Music Details" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
+                <Label Text="{Binding Title}" HorizontalOptions="CenterAndExpand"  VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
                 <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
             </StackLayout>
             <WebView Source="{Binding YouTubeUrl}" BackgroundColor="Aqua"  HeightRequest="1000" WidthRequest="1000"/>
