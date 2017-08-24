@@ -36,5 +36,9 @@ namespace DemoApp.ServiceManagers
 		{
 			return restService.GetMusicList(pageNumber);
 		}
+		public Task<FeedModel> getFeedAPICall()
+		{
+			return restService.GetFeed();
+		}
     }
 }

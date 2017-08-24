@@ -134,6 +134,12 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.267\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DemoApp\DemoApp.csproj">
@@ -229,6 +235,18 @@
     <ImageAsset Include="Assets.xcassets\iconLikeSelected.imageset\ic_like_2.png" />
     <ImageAsset Include="Assets.xcassets\iconLikeSelected.imageset\ic_like_2%402x.png" />
     <ImageAsset Include="Assets.xcassets\iconLikeSelected.imageset\ic_like_2%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconAddWatchlist.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconAddWatchlist.imageset\ic_add_list_2.png" />
+    <ImageAsset Include="Assets.xcassets\iconAddWatchlist.imageset\ic_add_list_2%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconAddWatchlist.imageset\ic_add_list_2%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconComment.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconComment.imageset\ic_comment_btn1.png" />
+    <ImageAsset Include="Assets.xcassets\iconComment.imageset\ic_comment_btn1%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconComment.imageset\ic_comment_btn1%403x.png" />
+    <ImageAsset Include="Assets.xcassets\iconNotification.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\iconNotification.imageset\Notification.png" />
+    <ImageAsset Include="Assets.xcassets\iconNotification.imageset\Notification%402x.png" />
+    <ImageAsset Include="Assets.xcassets\iconNotification.imageset\Notification%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -257,6 +275,9 @@
     <Folder Include="Assets.xcassets\iconPlay.imageset\" />
     <Folder Include="Assets.xcassets\iconWatchlistSelected.imageset\" />
     <Folder Include="Assets.xcassets\iconLikeSelected.imageset\" />
+    <Folder Include="Assets.xcassets\iconAddWatchlist.imageset\" />
+    <Folder Include="Assets.xcassets\iconComment.imageset\" />
+    <Folder Include="Assets.xcassets\iconNotification.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -298,4 +319,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
 </Project>

@@ -1,21 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.MoviePage" Title="Movie List" NavigationPage.HasNavigationBar="false">
-    <ContentPage.Content>
-        <StackLayout>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:DemoApp;assembly=DemoApp" x:Class="DemoApp.Views.MoviePage" Title="Movie List" NavigationPage.HasNavigationBar="false">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="newsDataTemplate">
+                <ViewCell Height="306">
+                    <Grid>
+                        <Image Margin="14,0" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="304" Aspect="Fill" />
+                        <Image Margin="19,7,18,5" Source="{Binding ThumbnailImageUrl}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                        <Button Margin="30,20,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="0,20,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconShare" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="0,20,70,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconLike" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Label Margin="30,210,30,5" Text="{Binding Title}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#333333" HeightRequest="30" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                        <Label Margin="30,245,30,5" Text="{Binding Preview}" FontSize="15" FontFamily="Roboto-Regular" TextColor="#919191" HeightRequest="40" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="personDataTemplate">
+                <ViewCell Height="120">
+                    <!--<CarouselView ItemsSource="{Binding MyDataSource}">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding PersonName}" />
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>-->
+                    <Grid>
+                        <Image Margin="15,9,0,0" Source="{Binding AvatarImage}" WidthRequest="109" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Aspect="AspectFit" BackgroundColor="Gray" />
+                        <Label Margin="132,8,5,0" Text="{Binding PersonName}" FontSize="16" FontFamily="Roboto-Medium" TextColor="#333333" HeightRequest="21" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                        <Label Margin="132,30,8,0" Text="{Binding About}" FontSize="13" FontFamily="Roboto-Regular" TextColor="#919191" HeightRequest="75" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                        <Image Margin="0,118,0,0" BackgroundColor="#C1C1C1" HeightRequest="1" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="movieDataTemplate">
+                <ViewCell Height="265">
+                    <Grid>
+                        <Image Margin="14,7" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="250" Aspect="Fill" />
+                        <Image Margin="19,13,18,5" Source="{Binding PosterImage}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                        <Label Margin="30,20,30,5" Text="{Binding Title}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#FFFFFF" HeightRequest="30" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                        <Label Margin="0,20,30,5" Text="{Binding ReleasedYear}" FontSize="15" FontFamily="Roboto-Regular" TextColor="#FFFFFF" HeightRequest="40" LineBreakMode="WordWrap" HorizontalOptions="End" VerticalOptions="Start" />
+                        <Button Margin="30,210,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconAddWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="70,210,0,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconComment" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="0,210,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconNotification" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <local:FeedDataTemplateSelector x:Key="feedDataTemplateSelector" NewsTemplate="{StaticResource newsDataTemplate}" PersonTemplate="{StaticResource personDataTemplate}" MovieTemplate="{StaticResource movieDataTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
             <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
                 <Button Clicked="didTapSlider" Image="iconProfile" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
                 <Label Text="Movies" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
                 <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
             </StackLayout>
             <Image BackgroundColor="#C1C1C1" HeightRequest="1" Margin="0" />
-            <TableView Intent="Settings">
-                <TableRoot>
-                    <TableSection Title="Settings type">
-                        <EntryCell Text="This is text field" Keyboard="Email" Label="Email: " LabelColor="Olive" />
-                        <SwitchCell Text="New Mail" On="true" />
-                    </TableSection>
-                </TableRoot>
-            </TableView>
-        </StackLayout>
-    </ContentPage.Content>
+        <ListView x:Name="feedListView" ItemTemplate="{StaticResource feedDataTemplateSelector}" HasUnevenRows="true" SeparatorVisibility="None" />
+    </StackLayout>
 </ContentPage>

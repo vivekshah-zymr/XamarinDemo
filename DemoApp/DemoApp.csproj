@@ -124,6 +124,10 @@
     <Compile Include="Views\MusicDetailsPage.xaml.cs">
       <DependentUpon>MusicDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\PersonModel.cs" />
+    <Compile Include="Models\FeedModel.cs" />
+    <Compile Include="DataTemplateSelector\FeedDataTemplateSelector.cs" />
+    <Compile Include="Models\MovieModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -131,6 +135,7 @@
     <Folder Include="ServiceManagers\" />
     <Folder Include="DBHelper\" />
     <Folder Include="Utils\MediaPicker\" />
+    <Folder Include="DataTemplateSelector\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -198,6 +203,9 @@
     </Reference>
     <Reference Include="System.Drawing">
       <HintPath>..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\ref\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.CarouselView">
+      <HintPath>..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.CarouselView.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

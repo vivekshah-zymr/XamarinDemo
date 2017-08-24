@@ -165,5 +165,47 @@ namespace DemoApp
 		}
 
 		#endregion
+
+		#region Feed Related API
+
+        public async Task<FeedModel> GetFeed()
+		{
+			var uri = new Uri(Constants.BASE_URL + "fms/ws/feeds");
+			FeedModel feeds = new FeedModel();
+			try
+			{
+				HttpResponseMessage response = null;
+				response = await client.GetAsync(uri);
+				if (response.IsSuccessStatusCode)
+				{
+					var responseJSON = response.Content.ReadAsStringAsync().Result;
+					var resultDict = JObject.Parse(responseJSON);
+					
+                    feeds.newsList = JsonConvert.DeserializeObject<List<NewsModel>>((resultDict["DashBoard"])["News"].ToString());
+                    feeds.personList = JsonConvert.DeserializeObject<List<PersonModel>>((resultDict["DashBoard"])["People"].ToString());
+                    feeds.movieList = JsonConvert.DeserializeObject<List<MovieModel>>((resultDict["DashBoard"])["BoxOffice"].ToString());
+					
+                    if (feeds.newsList == null)
+					{
+						feeds.newsList = new List<NewsModel>();
+					}
+                    if (feeds.personList == null)
+					{
+                        feeds.personList = new List<PersonModel>();
+					}
+                    if (feeds.movieList == null)
+					{
+                        feeds.movieList = new List<MovieModel>();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine("ERROR {0}", ex.Message);
+			}
+			return feeds;
+		}
+
+		#endregion
 	}
 }

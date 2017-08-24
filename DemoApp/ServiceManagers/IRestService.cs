@@ -11,5 +11,6 @@ namespace DemoApp.ServiceManagers
         Task<User> DoImageUpload(User user);
         Task<List<NewsModel>> GetNewsList(int pgNumber);
         Task<List<MusicModel>> GetMusicList(int pgNumber);
+        Task<FeedModel> GetFeed();
     }
 }
