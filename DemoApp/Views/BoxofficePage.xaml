@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.BoxofficePage" NavigationPage.HasNavigationBar="false">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.BoxofficePage" 
+    xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+    NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
@@ -7,7 +9,44 @@
                 <Label Text="News Details" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
                 <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
             </StackLayout>
-            <Button Clicked="didTapPush" Text="Push VC" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
+
+            
+            <ListView ItemsSource="{Binding MonkeysGrouped}" HasUnevenRows="true" GroupShortNameBinding="{Binding Key}" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Key}">
+                <ListView.Header>
+                    <cv:CarouselView x:Name="CarouselZoos" ItemsSource="{Binding Zoos}" HeightRequest="200" BackgroundColor="Blue">
+                        <cv:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid BackgroundColor="Green">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding ImageUrl}" BackgroundColor="Gray" />
+                                    <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+                                        <Label TextColor="White" Text="{Binding Name}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </cv:CarouselView.ItemTemplate>
+                    </cv:CarouselView>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10" RowSpacing="10" ColumnSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:DemoApp;assembly=DemoApp" x:Class="DemoApp.Views.MoviePage" Title="Movie List" NavigationPage.HasNavigationBar="false">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:DemoApp;assembly=DemoApp" xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView" 
+      x:Class="DemoApp.Views.MoviePage" 
+    Title="Movie List" NavigationPage.HasNavigationBar="false">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="newsDataTemplate">
                 <ViewCell Height="306">
                     <Grid>
                         <Image Margin="14,0" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="304" Aspect="Fill" />
-                        <Image Margin="19,7,18,5" Source="{Binding ThumbnailImageUrl}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                        <Image Margin="19,7,18,5" Source="{Binding PosterImageUrl}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
                         <Button Margin="30,20,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
                         <Button Margin="0,20,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconShare" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
                         <Button Margin="0,20,70,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconLike" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
@@ -15,15 +18,8 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-            <DataTemplate x:Key="personDataTemplate">
+            <!--<DataTemplate x:Key="personDataTemplate">
                 <ViewCell Height="120">
-                    <!--<CarouselView ItemsSource="{Binding MyDataSource}">
-                        <CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <Label Text="{Binding PersonName}" />
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-                    </CarouselView>-->
                     <Grid>
                         <Image Margin="15,9,0,0" Source="{Binding AvatarImage}" WidthRequest="109" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Aspect="AspectFit" BackgroundColor="Gray" />
                         <Label Margin="132,8,5,0" Text="{Binding PersonName}" FontSize="16" FontFamily="Roboto-Medium" TextColor="#333333" HeightRequest="21" LineBreakMode="WordWrap" VerticalOptions="Start" />
@@ -31,7 +27,7 @@
                         <Image Margin="0,118,0,0" BackgroundColor="#C1C1C1" HeightRequest="1" />
                     </Grid>
                 </ViewCell>
-            </DataTemplate>
+            </DataTemplate>-->
             <DataTemplate x:Key="movieDataTemplate">
                 <ViewCell Height="265">
                     <Grid>
@@ -45,16 +41,38 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-            <local:FeedDataTemplateSelector x:Key="feedDataTemplateSelector" NewsTemplate="{StaticResource newsDataTemplate}" PersonTemplate="{StaticResource personDataTemplate}" MovieTemplate="{StaticResource movieDataTemplate}" />
+
+            
+            <local:FeedDataTemplateSelector x:Key="feedDataTemplateSelector" NewsTemplate="{StaticResource newsDataTemplate}" MovieTemplate="{StaticResource movieDataTemplate}" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <StackLayout>
-            <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
-                <Button Clicked="didTapSlider" Image="iconProfile" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
-                <Label Text="Movies" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
-                <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
-            </StackLayout>
-            <Image BackgroundColor="#C1C1C1" HeightRequest="1" Margin="0" />
-        <ListView x:Name="feedListView" ItemTemplate="{StaticResource feedDataTemplateSelector}" HasUnevenRows="true" SeparatorVisibility="None" />
+        <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
+            <Button Clicked="didTapSlider" Image="iconProfile" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
+            <Label Text="Movies" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
+            <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
+        </StackLayout>
+        <Image BackgroundColor="#C1C1C1" HeightRequest="1" Margin="0" />
+        <ListView x:Name="feedListView" ItemTemplate="{StaticResource feedDataTemplateSelector}" HasUnevenRows="true"> 
+            <ListView.Header>
+                <cv:CarouselView x:Name="CarouselZoos" ItemsSource="{Binding personList}" HeightRequest="200" BackgroundColor="Blue">
+                    <cv:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid BackgroundColor="Green">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding CoverImage}" BackgroundColor="Gray" />
+                                <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+                                    <Label TextColor="White" Text="{Binding PersonName}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </cv:CarouselView.ItemTemplate>
+                </cv:CarouselView>
+            </ListView.Header>
+        </ListView>
     </StackLayout>
 </ContentPage>

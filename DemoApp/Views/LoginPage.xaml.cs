@@ -40,12 +40,12 @@ namespace DemoApp.Views
 			}
 		}
 
-        private async void didTapLogin1(object sender, EventArgs e)
+        private async void didTapLogin(object sender, EventArgs e)
         {
             // UserDialogs.Instance.AlertAsync("Test alert", "Alert Title");
 
             UserDialogs.Instance.ShowLoading("", MaskType.Clear);
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             UserDialogs.Instance.HideLoading();
             //await Task.Delay(1000);
             User user = new User();
@@ -55,7 +55,7 @@ namespace DemoApp.Views
             await Navigation.PushAsync(homePage);
         }
 
-        protected async void didTapLogin(object sender, EventArgs e)
+        protected async void didTapLogin1(object sender, EventArgs e)
         {
             lblEmailError.IsVisible = false;
             lblPasswordError.IsVisible = false;

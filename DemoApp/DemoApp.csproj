@@ -128,6 +128,9 @@
     <Compile Include="Models\FeedModel.cs" />
     <Compile Include="DataTemplateSelector\FeedDataTemplateSelector.cs" />
     <Compile Include="Models\MovieModel.cs" />
+    <Compile Include="Models\MonkeysViewModel.cs" />
+    <Compile Include="TempFiles\Grouping.cs" />
+    <Compile Include="TempFiles\MonkeyHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -136,6 +139,7 @@
     <Folder Include="DBHelper\" />
     <Folder Include="Utils\MediaPicker\" />
     <Folder Include="DataTemplateSelector\" />
+    <Folder Include="TempFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

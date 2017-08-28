@@ -10,6 +10,7 @@ namespace DemoApp.Views
         public BoxofficePage()
         {
             InitializeComponent();
+            BindingContext = new MonkeysViewModel();
         }
 
 		void didTapBack(object sender, EventArgs e)

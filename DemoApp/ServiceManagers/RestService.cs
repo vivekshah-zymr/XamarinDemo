@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -170,7 +171,9 @@ namespace DemoApp
 
         public async Task<FeedModel> GetFeed()
 		{
-			var uri = new Uri(Constants.BASE_URL + "fms/ws/feeds");
+			//var uri = new Uri(Constants.BASE_URL + "fms/ws/feeds");
+            var uri = new Uri("https://api.myjson.com/bins/gxwdh");
+
 			FeedModel feeds = new FeedModel();
 			try
 			{
@@ -180,23 +183,23 @@ namespace DemoApp
 				{
 					var responseJSON = response.Content.ReadAsStringAsync().Result;
 					var resultDict = JObject.Parse(responseJSON);
-					
-                    feeds.newsList = JsonConvert.DeserializeObject<List<NewsModel>>((resultDict["DashBoard"])["News"].ToString());
-                    feeds.personList = JsonConvert.DeserializeObject<List<PersonModel>>((resultDict["DashBoard"])["People"].ToString());
-                    feeds.movieList = JsonConvert.DeserializeObject<List<MovieModel>>((resultDict["DashBoard"])["BoxOffice"].ToString());
-					
-                    if (feeds.newsList == null)
+
+					if (feeds.newsList == null)
 					{
-						feeds.newsList = new List<NewsModel>();
+						feeds.newsList = new ObservableCollection<NewsModel>();
 					}
-                    if (feeds.personList == null)
+					if (feeds.personList == null)
 					{
-                        feeds.personList = new List<PersonModel>();
+						feeds.personList = new ObservableCollection<PersonModel>();
 					}
-                    if (feeds.movieList == null)
+					if (feeds.movieList == null)
 					{
-                        feeds.movieList = new List<MovieModel>();
+						feeds.movieList = new ObservableCollection<MovieModel>();
 					}
+
+                    feeds.newsList = new ObservableCollection<NewsModel>(JsonConvert.DeserializeObject<List<NewsModel>>((resultDict["DashBoard"])["News"].ToString()));
+                    feeds.personList = new ObservableCollection<PersonModel>(JsonConvert.DeserializeObject<List<PersonModel>>((resultDict["DashBoard"])["People"].ToString()));
+                    feeds.movieList = new ObservableCollection<MovieModel>(JsonConvert.DeserializeObject<List<MovieModel>>((resultDict["DashBoard"])["BoxOffice"].ToString()));
 				}
 			}
 			catch (Exception ex)

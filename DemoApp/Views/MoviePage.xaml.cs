@@ -10,11 +10,11 @@ namespace DemoApp.Views
 {
     public partial class MoviePage : ContentPage
     {
-        
-		
-		#region Basic Page Methods
+        FeedModel feeds;
 
-		public MoviePage()
+        #region Basic Page Methods
+
+        public MoviePage()
         {
             InitializeComponent();
 			getFeed();
@@ -23,23 +23,16 @@ namespace DemoApp.Views
 		async void getFeed()
 		{
 			UserDialogs.Instance.ShowLoading("", MaskType.Clear);
-            FeedModel feeds = await App.loginManager.getFeedAPICall();
+            feeds = await App.loginManager.getFeedAPICall();
 			if (feeds != null)
 			{
-				ObservableCollection<NewsModel> newsCollection = new ObservableCollection<NewsModel>(feeds.newsList);
-				ObservableCollection<PersonModel> personCollection = new ObservableCollection<PersonModel>(feeds.personList);
-                //ObservableCollection<MovieModel> movieCollection = new ObservableCollection<MovieModel>(feeds.movieList);
-
-				ObservableCollection<object> ListToBind = new ObservableCollection<object>(newsCollection);
-                ListToBind.Add(personCollection);
-
-     //           foreach (var item in feeds.personList)
-					//ListToBind.Add(item);
+				ObservableCollection<object> ListToBind = new ObservableCollection<object>(feeds.newsList);
 
                 foreach (var item in feeds.movieList)
 					ListToBind.Add(item);
                 
 				feedListView.ItemsSource = ListToBind;
+                BindingContext = feeds;
 			}
 			UserDialogs.Instance.HideLoading();
 		}

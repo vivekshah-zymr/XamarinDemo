@@ -238,6 +238,12 @@
     <AndroidResource Include="Resources\drawable-hdpi\iconWatchlistSelected.png" />
     <AndroidResource Include="Resources\drawable\iconLikeSelected.png" />
     <AndroidResource Include="Resources\drawable-hdpi\iconLikeSelected.png" />
+    <AndroidResource Include="Resources\drawable\iconAddWatchlist.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iconAddWatchlist.png" />
+    <AndroidResource Include="Resources\drawable\iconComment.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iconComment.png" />
+    <AndroidResource Include="Resources\drawable\iconNotification.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iconNotification.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fonts\FjallaOne-Regular.ttf" />

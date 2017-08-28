@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DemoApp.Models
 {
     public class FeedModel
     {
-        public List<NewsModel> newsList { get; set; }
-        public List<PersonModel> personList { get; set; }
-        public List<MovieModel> movieList { get; set; }
+        public ObservableCollection<NewsModel> newsList { get; set; }
+        public ObservableCollection<PersonModel> personList { get; set; }
+        public ObservableCollection<MovieModel> movieList { get; set; }
     }
 }
