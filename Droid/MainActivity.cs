@@ -39,7 +39,7 @@ namespace DemoApp.Droid
 			{
 				RequestedOrientation = ScreenOrientation.Portrait;
 			});
-
+            ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
             LoadApplication(new App());
         }
 

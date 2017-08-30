@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace DemoApp.Models
 {
     public class PersonModel
@@ -9,5 +12,7 @@ namespace DemoApp.Models
         public string AvatarImage { get; set; }
         public double DateOfBirth { get; set; }
         public string About { get; set; }
+
+        public List<PersonModel> lists { get; set; }
     }
 }

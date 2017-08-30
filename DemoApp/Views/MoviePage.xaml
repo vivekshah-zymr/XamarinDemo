@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:local="clr-namespace:DemoApp;assembly=DemoApp" xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView" 
-      x:Class="DemoApp.Views.MoviePage" 
-    Title="Movie List" NavigationPage.HasNavigationBar="false">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:DemoApp;assembly=DemoApp" xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView" x:Class="DemoApp.Views.MoviePage" Title="Movie List" NavigationPage.HasNavigationBar="false">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="newsDataTemplate">
@@ -18,16 +15,6 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-            <!--<DataTemplate x:Key="personDataTemplate">
-                <ViewCell Height="120">
-                    <Grid>
-                        <Image Margin="15,9,0,0" Source="{Binding AvatarImage}" WidthRequest="109" HeightRequest="100" HorizontalOptions="Start" VerticalOptions="Start" Aspect="AspectFit" BackgroundColor="Gray" />
-                        <Label Margin="132,8,5,0" Text="{Binding PersonName}" FontSize="16" FontFamily="Roboto-Medium" TextColor="#333333" HeightRequest="21" LineBreakMode="WordWrap" VerticalOptions="Start" />
-                        <Label Margin="132,30,8,0" Text="{Binding About}" FontSize="13" FontFamily="Roboto-Regular" TextColor="#919191" HeightRequest="75" LineBreakMode="WordWrap" VerticalOptions="Start" />
-                        <Image Margin="0,118,0,0" BackgroundColor="#C1C1C1" HeightRequest="1" />
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>-->
             <DataTemplate x:Key="movieDataTemplate">
                 <ViewCell Height="265">
                     <Grid>
@@ -41,12 +28,9 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-
-            
             <local:FeedDataTemplateSelector x:Key="feedDataTemplateSelector" NewsTemplate="{StaticResource newsDataTemplate}" MovieTemplate="{StaticResource movieDataTemplate}" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    
     <StackLayout>
         <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
             <Button Clicked="didTapSlider" Image="iconProfile" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
@@ -54,17 +38,17 @@
             <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
         </StackLayout>
         <Image BackgroundColor="#C1C1C1" HeightRequest="1" Margin="0" />
-        <ListView x:Name="feedListView" ItemTemplate="{StaticResource feedDataTemplateSelector}" HasUnevenRows="true"> 
+        <ListView x:Name="feedListView" ItemTemplate="{StaticResource feedDataTemplateSelector}" HasUnevenRows="true" >  <!--IsGroupingEnabled="true" GroupDisplayBinding="{Binding LongTitle}" GroupShortNameBinding="{Binding Title}"-->
             <ListView.Header>
-                <cv:CarouselView x:Name="CarouselZoos" ItemsSource="{Binding personList}" HeightRequest="200" BackgroundColor="Blue">
+                <cv:CarouselView x:Name="CarouselZoos" ItemsSource="{Binding personList}" HeightRequest="200">
                     <cv:CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <Grid BackgroundColor="Green">
+                            <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding CoverImage}" BackgroundColor="Gray" />
+                                <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding CoverImage}" BackgroundColor="Gray"/>
                                 <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
                                     <Label TextColor="White" Text="{Binding PersonName}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
                                 </StackLayout>

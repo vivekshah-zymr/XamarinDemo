@@ -112,8 +112,10 @@ namespace DemoApp
 
         public async Task<List<NewsModel>> GetNewsList(int pgNumber)
         {
-            var uri = new Uri(Constants.BASE_URL + "nms/ws/news/all?PageSize=10&PageNumber=" + pgNumber);
-            List<NewsModel> newsList = new List<NewsModel>();
+            //var uri = new Uri(Constants.BASE_URL + "nms/ws/news/all?PageSize=10&PageNumber=" + pgNumber);
+            var uri = new Uri("https://api.myjson.com/bins/188gad");
+
+			List<NewsModel> newsList = new List<NewsModel>();
             try
             {
                 HttpResponseMessage response = null;
@@ -141,7 +143,9 @@ namespace DemoApp
 
         public async Task<List<MusicModel>> GetMusicList(int pgNumber)
 		{
-			var uri = new Uri(Constants.BASE_URL + "vms/ws/video/type/songs?PageSize=10&PageNumber=" + pgNumber);
+			//var uri = new Uri(Constants.BASE_URL + "vms/ws/video/type/songs?PageSize=10&PageNumber=" + pgNumber);
+            var uri = new Uri("https://api.myjson.com/bins/1bt1x1");
+
 			List<MusicModel> musicList = new List<MusicModel>();
 			try
 			{
@@ -172,7 +176,7 @@ namespace DemoApp
         public async Task<FeedModel> GetFeed()
 		{
 			//var uri = new Uri(Constants.BASE_URL + "fms/ws/feeds");
-            var uri = new Uri("https://api.myjson.com/bins/gxwdh");
+            var uri = new Uri("https://api.myjson.com/bins/dc1zp");  //https://api.myjson.com/bins/gxwdh
 
 			FeedModel feeds = new FeedModel();
 			try

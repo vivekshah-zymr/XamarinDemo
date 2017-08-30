@@ -1,52 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.BoxofficePage" 
-    xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
-    NavigationPage.HasNavigationBar="false">
-    <ContentPage.Content>
-        <StackLayout>
-            <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
-                <Button Clicked="didTapBack" Image="iconBack" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
-                <Label Text="News Details" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
-                <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
-            </StackLayout>
-
-            
-            <ListView ItemsSource="{Binding MonkeysGrouped}" HasUnevenRows="true" GroupShortNameBinding="{Binding Key}" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Key}">
-                <ListView.Header>
-                    <cv:CarouselView x:Name="CarouselZoos" ItemsSource="{Binding Zoos}" HeightRequest="200" BackgroundColor="Blue">
-                        <cv:CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid BackgroundColor="Green">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding ImageUrl}" BackgroundColor="Gray" />
-                                    <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
-                                        <Label TextColor="White" Text="{Binding Name}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                                    </StackLayout>
-                                </Grid>
-                            </DataTemplate>
-                        </cv:CarouselView.ItemTemplate>
-                    </cv:CarouselView>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid Padding="10" RowSpacing="10" ColumnSpacing="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions" x:Class="DemoApp.Views.BoxofficePage" xmlns:local="clr-namespace:DemoApp;assembly=DemoApp" xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView" NavigationPage.HasNavigationBar="false">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="personDataTemplate">
+                <ViewCell Height="210">
+                    <StackLayout HeightRequest="200">
+                        <StackLayout HeightRequest="40">
+                            <Grid>
+                                <Label Margin="20,2,0,0" WidthRequest="130" VerticalTextAlignment="Center" HorizontalOptions="Start" Text="CELEBRITIES" FontSize="15" FontFamily="Roboto-Regular" TextColor="Black" HeightRequest="40" MinimumHeightRequest="40" />
+                                <Button BorderColor="#9D7FF6" BorderWidth="1" Margin="0,6,20,2" Text="VIEW ALL" FontSize="12" TextColor="#9D7FF6" WidthRequest="80" HeightRequest="30" HorizontalOptions="End" />
                             </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        </StackLayout>
+                        <StackLayout HeightRequest="160">
+                            <RelativeLayout>
+                                <ListView ItemsSource="{Binding lists}" Rotation="270" SeparatorVisibility="None" RowHeight="150" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-75}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=-0.5, Constant=75}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=150}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <ContentView Rotation="90">
+                                                    <StackLayout>
+                                                        <controls:CircleImage Margin="3,3,3,0" BorderThickness="3" HeightRequest="125" WidthRequest="125" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFill" Source="{Binding CoverImage}" />
+                                                        <Label Margin="3,-6,3,0" Text="{Binding PersonName}" TextColor="#919191" FontSize="15" FontFamily="Roboto-Regular" HorizontalTextAlignment="Center" HeightRequest="20" LineBreakMode="WordWrap" />
+                                                    </StackLayout>
+                                                </ContentView>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </RelativeLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="newsDataTemplate">
+                <ViewCell Height="306">
+                    <Grid>
+                        <Image Margin="14,0" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="304" Aspect="Fill" />
+                        <Image Margin="19,7,18,5" Source="{Binding PosterImageUrl}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                        <Button Margin="30,20,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="0,20,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconShare" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="0,20,70,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconLike" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Label Margin="30,210,30,5" Text="{Binding Title}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#333333" HeightRequest="30" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                        <Label Margin="30,245,30,5" Text="{Binding Preview}" FontSize="15" FontFamily="Roboto-Regular" TextColor="#919191" HeightRequest="40" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="movieDataTemplate">
+                <ViewCell Height="265">
+                    <Grid>
+                        <Image Margin="14,7" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="250" Aspect="Fill" />
+                        <Image Margin="19,13,18,5" Source="{Binding PosterImage}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
+                        <Label Margin="30,20,30,5" Text="{Binding Title}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#FFFFFF" HeightRequest="30" LineBreakMode="WordWrap" VerticalOptions="Start" />
+                        <Label Margin="0,20,30,5" Text="{Binding ReleasedYear}" FontSize="15" FontFamily="Roboto-Regular" TextColor="#FFFFFF" HeightRequest="40" LineBreakMode="WordWrap" HorizontalOptions="End" VerticalOptions="Start" />
+                        <Button Margin="30,210,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconAddWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="70,210,0,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconComment" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="0,210,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconNotification" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <local:FeedDataTemplateSelector x:Key="feedDataTemplateSelector" PersonTemplate="{StaticResource personDataTemplate}" NewsTemplate="{StaticResource newsDataTemplate}" MovieTemplate="{StaticResource movieDataTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
+            <Button Clicked="didTapSlider" Image="iconProfile" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
+            <Label Text="Movies" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
+            <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
         </StackLayout>
-    </ContentPage.Content>
+        <Image BackgroundColor="#C1C1C1" HeightRequest="1" Margin="0" />
+        <ListView x:Name="feedListView" ItemTemplate="{StaticResource feedDataTemplateSelector}" HasUnevenRows="true">
+            <!--<ListView.Header>
+                <cv:CarouselView x:Name="CarouselZoos" ItemsSource="{Binding personList}" HeightRequest="200">
+                    <cv:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding CoverImage}" BackgroundColor="Gray" />
+                                <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+                                    <Label TextColor="White" Text="{Binding PersonName}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </cv:CarouselView.ItemTemplate>
+                </cv:CarouselView>
+            </ListView.Header>-->
+        </ListView>
+    </StackLayout>
 </ContentPage>
