@@ -22,11 +22,6 @@ namespace DemoApp.Views
             InitializeComponent();
             newsList = new List<NewsModel>();
             getNews();
-            //newsArray = new ObservableCollection<NewsModel>();
-            //newsArray.Add(new NewsModel { Id = 1, Text = "Shahid Kapoor Called Mira Rajput’s Father To Apologise – Here’s Why!", Title = "My daddy strongest!", PosterImageUrl = "https://dopypjfu5v10j.cloudfront.net/images/news/25224/dc98aec8-e332-40f8-8af6-eda2ed4bd8b2shahid-kapoor-759.jpg" });
-            //newsArray.Add(new NewsModel { Id = 2, Text = "Abhay Deol Awarded The Valerian Of Racism For Raising His Voice Against Fairness Creams", Title = "Well done Abhay!", PosterImageUrl = "https://dopypjfu5v10j.cloudfront.net/images/news/25223/4d5038ec-2918-4110-9701-c488df36d2b4download2.jpeg" });
-            //newsArray.Add(new NewsModel { Id = 3, Text = "Ranbir Kapoor on Sanjay Dutt biopic: I can't believe how much hell can a man go through in his life", Title = "Ranbir Kapoor opens up on Sanjay Dutt biopic.", PosterImageUrl = "https://dopypjfu5v10j.cloudfront.net/images/news/25222/cf3f1f8c-4f75-4dac-a3ad-f5e91716b6c1download1.jpeg" });
-            //newsListView.ItemsSource = newsArray;
         }
 
         protected override void OnAppearing()
@@ -125,8 +120,15 @@ namespace DemoApp.Views
 
         void didTapBack(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+			var mainPage = Xamarin.Forms.Application.Current.MainPage;
+			var homePage = mainPage.Navigation.NavigationStack.LastOrDefault();
+			if (homePage is HomePage)
+			{
+				TabbedPage tb = (TabbedPage)((HomePage)homePage).Detail;
+				tb.CurrentPage = tb.Children[0];
+			}
         }
+
         void didTapSearch(object sender, EventArgs e)
         {
             Navigation.PopAsync();

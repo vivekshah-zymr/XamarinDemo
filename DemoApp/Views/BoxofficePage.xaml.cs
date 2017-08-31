@@ -28,18 +28,18 @@ namespace DemoApp.Views
             feeds = await App.loginManager.getFeedAPICall();
             if (feeds != null)
             {
-				foreach (var item in feeds.newsList)
+				foreach (var item in feeds.movieList)
 					ListToBind.Add(item);
-					
+
                 PersonModel p1 = new PersonModel();
                 p1.lists = new List<PersonModel>();
                 p1.lists.AddRange(feeds.personList);
                 ListToBind.Add(p1);
 
-                foreach (var item in feeds.movieList)
-                    ListToBind.Add(item);
+				foreach (var item in feeds.newsList)
+					ListToBind.Add(item);
 
-                feedListView.ItemsSource = ListToBind;
+				feedListView.ItemsSource = ListToBind;
                 //BindingContext = feeds;
             }
             UserDialogs.Instance.HideLoading();
@@ -48,7 +48,7 @@ namespace DemoApp.Views
         void didTapSlider(object sender, EventArgs e)
         {
             int i = 1;
-            var mainPage = Xamarin.Forms.Application.Current.MainPage;
+            var mainPage = Application.Current.MainPage;
             while (mainPage.Navigation.NavigationStack.Count > 0 && mainPage.Navigation.NavigationStack.Count >= i)
             {
                 var stackPage = mainPage.Navigation.NavigationStack[i - 1];
@@ -85,29 +85,99 @@ namespace DemoApp.Views
 
         #region News Items And Other Tap Events
 
-        private void OnItemTapped(object sender, ItemTappedEventArgs e)
+        private void didTapNewsCell(object sender, ItemTappedEventArgs e)
         {
-
+            feedListView.SelectedItem = null;
+            ViewCell item = (ViewCell)sender;
+            NewsModel listitem = (NewsModel)item.BindingContext;
+            if (listitem == null)
+            {
+                return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
+            }
+            var newsDetailsPage = new NewsDetailsPage();
+            newsDetailsPage.newsDetails = listitem;
+            newsDetailsPage.BindingContext = listitem;
+            Navigation.PushAsync(newsDetailsPage);
         }
 
-        void didTapWatchlist(object sender, EventArgs e)
-        {
+		void didTapWatchlistNews(object sender, EventArgs e)
+		{
+			var item = (Xamarin.Forms.Button)sender;
+			NewsModel listitem = (from news in feeds.newsList where news.Id == (int)item.CommandParameter select news).FirstOrDefault<NewsModel>();
+			DisplayAlert("News Watchlist", listitem.Title, "Ok");
+		}
 
+		void didTapShareNews(object sender, EventArgs e)
+		{
+			var item = (Xamarin.Forms.Button)sender;
+			NewsModel listitem = (from news in feeds.newsList where news.Id == (int)item.CommandParameter select news).FirstOrDefault<NewsModel>();
+			DisplayAlert("News Watchlist", listitem.Title, "Ok");
+		}
+
+		void didTapLikeNews(object sender, EventArgs e)
+		{
+			var item = (Xamarin.Forms.Button)sender;
+			NewsModel listitem = (from news in feeds.newsList where news.Id == (int)item.CommandParameter select news).FirstOrDefault<NewsModel>();
+			DisplayAlert("News Watchlist", listitem.Title, "Ok");
+		}
+
+        private void didTapMovieCell(object sender, ItemTappedEventArgs e)
+		{
+            feedListView.SelectedItem = null;
+            ViewCell item = (ViewCell)sender;
+            MovieModel listitem = (MovieModel)item.BindingContext;
+			if (listitem == null)
+			{
+				return;
+			}
+			DisplayAlert("Movie Details", listitem.Title, "Ok");
         }
 
-        void didTapLike(object sender, EventArgs e)
+        void didTapWatchlistMovie(object sender, EventArgs e)
         {
+			var item = (Xamarin.Forms.Button)sender;
+            MovieModel listitem = (from movie in feeds.movieList where movie.Id == (int)item.CommandParameter select movie).FirstOrDefault<MovieModel>();
+			DisplayAlert("Movie Watchlist", listitem.Title, "Ok");
         }
 
-        void didTapShare(object sender, EventArgs e)
-        {
-
+        void didTapReview(object sender, EventArgs e)
+		{
+			var item = (Xamarin.Forms.Button)sender;
+			MovieModel listitem = (from movie in feeds.movieList where movie.Id == (int)item.CommandParameter select movie).FirstOrDefault<MovieModel>();
+			DisplayAlert("Movie Review", listitem.Title, "Ok");
         }
+
+        void didTapSetAlarm(object sender, EventArgs e)
+		{
+			var item = (Xamarin.Forms.Button)sender;
+			MovieModel listitem = (from movie in feeds.movieList where movie.Id == (int)item.CommandParameter select movie).FirstOrDefault<MovieModel>();
+			DisplayAlert("Movie Set alarm", listitem.Title, "Ok");
+        }
+
+		private void didTapPersonCell(object sender, ItemTappedEventArgs e)
+		{
+			ViewCell item = (ViewCell)sender;
+            ListView lView = (ListView)item.Parent;
+            lView.SelectedItem = null;
+            PersonModel listitem = (PersonModel)item.BindingContext;
+			if (listitem == null)
+			{
+				return;
+			}
+            DisplayAlert("Person Details", listitem.PersonName, "Ok");
+		}
 
         void didTapBack(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+			var mainPage = Xamarin.Forms.Application.Current.MainPage;
+			var homePage = mainPage.Navigation.NavigationStack.LastOrDefault();
+			if (homePage is HomePage)
+			{
+				TabbedPage tb = (TabbedPage)((HomePage)homePage).Detail;
+				tb.CurrentPage = tb.Children[0];
+			}
         }
+
         void didTapSearch(object sender, EventArgs e)
         {
             Navigation.PopAsync();

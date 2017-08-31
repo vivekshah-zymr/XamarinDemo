@@ -136,7 +136,13 @@ namespace DemoApp.Views
 
         void didTapBack(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+			var mainPage = Xamarin.Forms.Application.Current.MainPage;
+			var homePage = mainPage.Navigation.NavigationStack.LastOrDefault();
+			if (homePage is HomePage)
+			{
+				TabbedPage tb = (TabbedPage)((HomePage)homePage).Detail;
+				tb.CurrentPage = tb.Children[0];
+			}
         }
         void didTapSearch(object sender, EventArgs e)
         {

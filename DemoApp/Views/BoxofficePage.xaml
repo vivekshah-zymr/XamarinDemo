@@ -13,10 +13,10 @@
                         </StackLayout>
                         <StackLayout HeightRequest="160">
                             <RelativeLayout>
-                                <ListView ItemsSource="{Binding lists}" Rotation="270" SeparatorVisibility="None" RowHeight="150" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-75}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=-0.5, Constant=75}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=150}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1}">
+                                <ListView x:Name="personListView" ItemsSource="{Binding lists}" Rotation="270" SeparatorVisibility="None" RowHeight="150" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-75}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=-0.5, Constant=75}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=150}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <ViewCell>
+                                            <ViewCell Tapped="didTapPersonCell">
                                                 <ContentView Rotation="90">
                                                     <StackLayout>
                                                         <controls:CircleImage Margin="3,3,3,0" BorderThickness="3" HeightRequest="125" WidthRequest="125" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFill" Source="{Binding CoverImage}" />
@@ -33,28 +33,28 @@
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="newsDataTemplate">
-                <ViewCell Height="306">
-                    <Grid>
+                <ViewCell Height="306" Tapped="didTapNewsCell">
+                    <Grid >
                         <Image Margin="14,0" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="304" Aspect="Fill" />
                         <Image Margin="19,7,18,5" Source="{Binding PosterImageUrl}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
-                        <Button Margin="30,20,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
-                        <Button Margin="0,20,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconShare" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
-                        <Button Margin="0,20,70,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconLike" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="30,20,0,0" Clicked="didTapWatchlistNews" CommandParameter="{Binding Id}" Image="iconWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="0,20,30,0" Clicked="didTapShareNews" CommandParameter="{Binding Id}" Image="iconShare" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="0,20,70,0" Clicked="didTapLikeNews" CommandParameter="{Binding Id}" Image="iconLike" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
                         <Label Margin="30,210,30,5" Text="{Binding Title}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#333333" HeightRequest="30" LineBreakMode="WordWrap" VerticalOptions="Start" />
                         <Label Margin="30,245,30,5" Text="{Binding Preview}" FontSize="15" FontFamily="Roboto-Regular" TextColor="#919191" HeightRequest="40" LineBreakMode="WordWrap" VerticalOptions="Start" />
                     </Grid>
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="movieDataTemplate">
-                <ViewCell Height="265">
+                <ViewCell Height="265" Tapped="didTapMovieCell">
                     <Grid>
                         <Image Margin="14,7" Source="bgNews" HorizontalOptions="FillAndExpand" HeightRequest="250" Aspect="Fill" />
                         <Image Margin="19,13,18,5" Source="{Binding PosterImage}" VerticalOptions="Start" BackgroundColor="Gray" HeightRequest="190" Aspect="AspectFill" />
                         <Label Margin="30,20,30,5" Text="{Binding Title}" FontSize="21" FontFamily="FjallaOne-Regular" TextColor="#FFFFFF" HeightRequest="30" LineBreakMode="WordWrap" VerticalOptions="Start" />
                         <Label Margin="0,20,30,5" Text="{Binding ReleasedYear}" FontSize="15" FontFamily="Roboto-Regular" TextColor="#FFFFFF" HeightRequest="40" LineBreakMode="WordWrap" HorizontalOptions="End" VerticalOptions="Start" />
-                        <Button Margin="30,210,0,0" Clicked="didTapWatchlist" CommandParameter="{Binding Id}" Image="iconAddWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
-                        <Button Margin="70,210,0,0" Clicked="didTapLike" CommandParameter="{Binding Id}" Image="iconComment" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
-                        <Button Margin="0,210,30,0" Clicked="didTapShare" CommandParameter="{Binding Id}" Image="iconNotification" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="30,210,0,0" Clicked="didTapWatchlistMovie" CommandParameter="{Binding Id}" Image="iconAddWatchlist" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="70,210,0,0" Clicked="didTapReview" CommandParameter="{Binding Id}" Image="iconComment" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Transparent" />
+                        <Button Margin="0,210,30,0" Clicked="didTapSetAlarm" CommandParameter="{Binding Id}" Image="iconNotification" WidthRequest="40" HeightRequest="40" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Transparent" />
                     </Grid>
                 </ViewCell>
             </DataTemplate>
@@ -63,7 +63,7 @@
     </ContentPage.Resources>
     <StackLayout>
         <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
-            <Button Clicked="didTapSlider" Image="iconProfile" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
+            <Button Clicked="didTapBack" Image="iconBack" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
             <Label Text="Movies" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
             <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
         </StackLayout>
