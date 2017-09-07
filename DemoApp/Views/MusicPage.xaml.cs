@@ -96,12 +96,15 @@ namespace DemoApp.Views
             }
             ((ListView)sender).SelectedItem = null;
             var displayTxt = ((MusicModel)e.Item).Id.ToString() + " " + ((MusicModel)e.Item).Title;
-            //DisplayAlert("Item Tapped", displayTxt, "OK");
 
-            var musicDetailsPage = new MusicDetailsPage();
-            musicDetailsPage.musicDetails = (MusicModel)e.Item;
-            musicDetailsPage.BindingContext = (MusicModel)e.Item;
-            Navigation.PushAsync(musicDetailsPage);
+			var musicDetailsPage = new MusicDetailsPage();
+			musicDetailsPage.musicDetails = (MusicModel)e.Item;
+			musicDetailsPage.BindingContext = (MusicModel)e.Item;
+			Navigation.PushAsync(musicDetailsPage);
+
+            // For youtube video player.
+   //         var musicDetailsPage = new MusicVideoPage();
+			//Navigation.PushAsync(musicDetailsPage);
         }
 
         async void didTapWatchlist(object sender, EventArgs e)

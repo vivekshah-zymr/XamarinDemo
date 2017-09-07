@@ -5,6 +5,8 @@ using Foundation;
 using UIKit;
 using DemoApp.Views;
 using Xamarin.Forms;
+using Octane.Xam.VideoPlayer.iOS;
+using Xamarin.Forms.Platform.iOS;
 
 namespace DemoApp.iOS
 {
@@ -16,6 +18,7 @@ namespace DemoApp.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
+            FormsVideoPlayer.Init();
             return base.FinishedLaunching(app, options);
         }
 

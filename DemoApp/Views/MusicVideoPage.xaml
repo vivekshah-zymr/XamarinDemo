@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DemoApp.Views.MusicVideoPage" xmlns:me="clr-namespace:DemoApp.MarkupExtensions;assembly=DemoApp" xmlns:o="clr-namespace:Octane.Xam.VideoPlayer;assembly=Octane.Xam.VideoPlayer" NavigationPage.HasNavigationBar="false">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout HeightRequest="44" Orientation="Horizontal" BackgroundColor="White" Padding="0,20,0,0">
+                <Button Clicked="didTapBack" Image="iconBack" WidthRequest="44" HorizontalOptions="Start" BackgroundColor="Transparent" />
+                <Label Text="All Music" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" TextColor="#333333" FontFamily="Roboto-Regular" />
+                <Button Clicked="didTapSearch" Image="iconSearch" WidthRequest="44" HorizontalOptions="End" BackgroundColor="Transparent" />
+            </StackLayout>
+            <StackLayout BindingContext="{x:Reference VideoPlayer}" HeightRequest="200" VerticalOptions="FillAndExpand" Spacing="0">
+                <o:VideoPlayer x:Name="VideoPlayer" DisplayControls="true" FillMode="ResizeAspectFill" AutoPlay="True" Source="https://www.youtube.com/watch?v=5nyFfZnsyNY" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
